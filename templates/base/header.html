@@ -1,104 +1,110 @@
 {% load static %}
 <!-- Navbar -->
-    <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page -->
-    <header class="header navbar navbar-expand-lg navbar-light bg-light navbar-sticky">
-        <div class="container px-3">
-            <a href="/" class="navbar-brand pe-3" style="color: #4044EE;">&lt;/Malikov&gt;</a>
-            <div id="navbarNav" class="offcanvas offcanvas-end">
-                <div class="offcanvas-header border-bottom">
-                    <h5 class="offcanvas-title">Menu</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <a href="/" class="nav-link">Home</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Posts</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/" class="dropdown-item">Articles</a></li>
-                                <li><a href="#podcasts" class="dropdown-item">Podcasts</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a href="/" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-current="page">About</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/" class="dropdown-item">About me</a></li>
-                                <li><a href="/" class="dropdown-item">Projects</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="offcanvas-footer border-top">
-                    <ul class="navbar-nav me2-auto mb-2 mb-lg-0 ">
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-current="page">
-                                <img src="{% static 'img/avatar/18.jpg' %}" class="d-block rounded-circle" width="50"
-                                     alt="John Doe"><span style="margin-left:10px;">@malikov</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu2">
-                                <li><a class="dropdown-item"
-                                       style="color: #4044EE; font-weight: bolder; font-size: 0.9rem;">Abdusamad
-                                    Malikov</a></li>
-                                <hr class="dropdown-divider2">
-                                <li><a href="account-details.html" class="dropdown-item">Account Details</a></li>
-                                <li><a href="account-security.html" class="dropdown-item">Security</a></li>
-                                <li><a href="account-saved-items.html" class="dropdown-item">Saved Items</a></li>
-                                <li><a href="account-collections.html" class="dropdown-item">My Collections</a></li>
-                                <li><a href="account-signup.html" class="dropdown-item link-danger">Log Out</a></li>
-                                <hr class="dropdown-divider2">
-                                <li class="dropdown-item">
-                                    <div class="form-check form-switch mode-switch pe-lg-1 ms-auto me-4"
-                                         data-bs-toggle="mode">
-                                        <input type="checkbox" class="form-check-input" id="theme-mode">
-                                        <label class="form-check-label d-none d-sm-block" for="theme-mode">Light</label>
-                                        <label class="form-check-label d-none d-sm-block" for="theme-mode">Dark</label>
-                                    </div>
-                                </li>
-                            </ul>
-                        <li>
-                    </ul>
-                </div>
+<!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page -->
+<header class="header navbar navbar-expand-lg navbar-light bg-light navbar-sticky">
+    <div class="container px-3">
+        <a href="/" class="navbar-brand pe-3" style="color: red;">&lt;/<span style="color: #4044EE">Malikov</span>&gt;</a>
+        <div id="navbarNav" class="offcanvas offcanvas-end">
+            <div class="offcanvas-header border-bottom">
+                <h5 class="offcanvas-title">Menu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <!-- Hamburger button -->
-            <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- AVATAR -->
-            <ul class="navbar-nav me2-auto mb-2 mb-lg-0 d-none-ava ">
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-current="page">
-                        <img src="{% static 'img/avatar/18.jpg' %}" class="d-block rounded-circle" width="50"
-                             alt="John Doe"><span style="margin-left:10px;">@malikov</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu2">
-                        <li><a class="dropdown-item" style="color: #4044EE; font-weight: bolder; font-size: 0.9rem;">Abdusamad
-                            Malikov</a></li>
-                        <hr class="dropdown-divider2">
-                        <li><a href="account-details.html" class="dropdown-item">Account Details</a></li>
-                        <li><a href="account-security.html" class="dropdown-item">Security</a></li>
-                        <li><a href="account-saved-items.html" class="dropdown-item">Saved Items</a></li>
-                        <li><a href="account-collections.html" class="dropdown-item">My Collections</a></li>
-                        <li><a href="account-signup.html" class="dropdown-item link-danger">Log Out</a></li>
-                        <hr class="dropdown-divider2">
-                        <li class="dropdown-item">
-                            <div class="form-check form-switch mode-switch pe-lg-1 ms-auto me-4" data-bs-toggle="mode">
-{#                                <input type="checkbox" class="form-check-input" id="theme-mode">#}
-                                <label class="form-check-label d-sm-block btn btn-sm btn-outline-info" for="theme-mode">Light</label>
-                                <label class="form-check-label d-sm-block btn btn-sm btn-primary" for="theme-mode">Dark</label>
-                            </div>
-                        </li>
-                    </ul>
-                <li>
-            </ul>
-            <!-- <a href="/" class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex" target="_blank" rel="noopener">
-                &nbsp;Sign Up
-                </a> -->
+            <div class="offcanvas-body">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a href="/" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Posts</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/" class="dropdown-item">Articles</a></li>
+                            <li><a href="#podcasts" class="dropdown-item">Podcasts</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="/" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                           aria-current="page">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/" class="dropdown-item">About me</a></li>
+                            <li><a href="/" class="dropdown-item">Projects</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="offcanvas-footer border-top">
+                <ul class="navbar-nav me2-auto mb-2 mb-lg-0 ">
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-current="page">
+                            <img src="{% static 'img/avatar/18.jpg' %}" class="d-block rounded-circle" width="50"
+                                 alt="John Doe"><span style="margin-left:10px;">@malikov</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu2">
+                            <li><a class="dropdown-item"
+                                   style="color: #4044EE; font-weight: bolder; font-size: 0.9rem;">Abdusamad
+                                Malikov</a></li>
+                            <hr class="dropdown-divider2">
+                            <li><a href="account-details.html" class="dropdown-item">Account Details</a></li>
+                            <li><a href="account-security.html" class="dropdown-item">Security</a></li>
+                            <li><a href="account-saved-items.html" class="dropdown-item">Saved Items</a></li>
+                            <li><a href="account-collections.html" class="dropdown-item">My Collections</a></li>
+                            <li><a href="account-signup.html" class="dropdown-item link-danger">Log Out</a></li>
+                            <hr class="dropdown-divider2">
+                            <li class="dropdown-item">
+                                <div class="form-check form-switch mode-switch pe-lg-1 ms-auto me-4"
+                                     data-bs-toggle="mode">
+                                    <input type="checkbox" class="form-check-input" id="theme-mode">
+                                    <label class="form-check-label d-none d-sm-block" for="theme-mode">Light</label>
+                                    <label class="form-check-label d-none d-sm-block" for="theme-mode">Dark</label>
+                                </div>
+                            </li>
+                        </ul>
+                    <li>
+                </ul>
+                <!--<a href="/" class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex" target="_blank" rel="noopener">
+                    &nbsp;Sign Up
+            </a>
+                -->
+            </div>
         </div>
-    </header>
+        <!-- Hamburger button -->
+        <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- AVATAR -->
+        <ul class="navbar-nav me2-auto mb-2 mb-lg-0 d-none-ava ">
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-current="page">
+                    <img src="{% static 'img/avatar/18.jpg' %}" class="d-block rounded-circle" width="50"
+                         alt="John Doe"><span style="margin-left:10px;">@malikov</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu2">
+                    <li><a class="dropdown-item" style="color: #4044EE; font-weight: bolder; font-size: 0.9rem;">Abdusamad
+                        Malikov</a></li>
+                    <hr class="dropdown-divider2">
+                    <li><a href="account-details.html" class="dropdown-item">Account Details</a></li>
+                    <li><a href="account-security.html" class="dropdown-item">Security</a></li>
+                    <li><a href="account-saved-items.html" class="dropdown-item">Saved Items</a></li>
+                    <li><a href="account-collections.html" class="dropdown-item">My Collections</a></li>
+                    <li><a href="account-signup.html" class="dropdown-item link-danger">Log Out</a></li>
+                    <hr class="dropdown-divider2">
+                    <li class="dropdown-item">
+                        <div class="form-check form-switch mode-switch pe-lg-1 ms-auto me-4" data-bs-toggle="mode">
+{#                            <input type="checkbox" class="form-check-input" id="theme-mode">#}
+                            <label class="form-check-label d-sm-block btn btn-sm btn-outline-info" for="theme-mode">Light</label>
+                            <label class="form-check-label d-sm-block btn btn-sm btn-primary"
+                                   for="theme-mode">Dark</label>
+                        </div>
+                    </li>
+                </ul>
+            <li>
+        </ul>
+        <!-- <a href="/" class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex" target="_blank" rel="noopener">
+            &nbsp;Sign Up
+            </a> -->
+    </div>
+</header>
