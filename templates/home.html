@@ -1,12 +1,14 @@
-
-<!-- Page wrapper for sticky footer -->
-<!-- Wraps everything except footer to push footer to the bottom of the page if there is little content -->
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Page wrapper for sticky footer -->
+    <!-- Wraps everything except footer to push footer to the bottom of the page if there is little content -->
     <!-- Navbar -->
     <!-- Hero -->
     <section class="dark-mode position-relative jarallax pb-xl-3" data-jarallax data-speed="0.4">
         <!-- Parallax img -->
         <div class="jarallax-img bg-dark opacity-70"
-             style="background-image: url({% static 'img/blog/single/cover-image.jpg' %});"></div>
+             style="background-image: url({% static 'img/blog/single/cover-image3.jpg' %});"></div>
         <!-- Overlay bg -->
         <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-70 zindex-1"></span>
         <!-- Overlay content -->
@@ -17,7 +19,6 @@
                     <li class="breadcrumb-item">
                         <a href="/"><i class="bx bx-home-alt fs-lg me-1"></i>Home</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Blog Homepage</li>
                 </ol>
             </nav>
             <!-- Featured article -->
@@ -298,7 +299,7 @@
                                    data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
                                     <i class="bx bx-bookmark"></i>
                                 </a>
-                                <img src="{% static 'assets/img/blog/01.jpg' %}" class="card-img-top" alt="Image">
+                                <img src="{% static 'img/blog/01.jpg' %}" class="card-img-top" alt="Image">
                             </div>
                             <div class="card-body pb-4">
                                 <div class="d-flex align-items-center justify-content-between mb-3">
@@ -312,7 +313,7 @@
                             </div>
                             <div class="card-footer py-4">
                                 <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
-                                    <img src="{% static 'assets/img/avatar/06.jpg' %}" class="rounded-circle me-3" width="48"
+                                    <img src="{% static 'img/avatar/06.jpg' %}" class="rounded-circle me-3" width="48"
                                          alt="Avatar">
                                     Annette Black
                                 </a>
@@ -330,7 +331,7 @@
                                    data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
                                     <i class="bx bx-bookmark"></i>
                                 </a>
-                                <img src="{% static 'assets/img/blog/02.jpg' %}" class="card-img-top" alt="Image">
+                                <img src="{% static 'img/blog/02.jpg' %}" class="card-img-top" alt="Image">
                             </div>
                             <div class="card-body pb-4">
                                 <div class="d-flex align-items-center justify-content-between mb-3">
@@ -344,7 +345,7 @@
                             </div>
                             <div class="card-footer py-4">
                                 <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
-                                    <img src="{% static 'assets/img/avatar/01.jpg' %}" class="rounded-circle me-3" width="48"
+                                    <img src="{% static 'img/avatar/01.jpg' %}" class="rounded-circle me-3" width="48"
                                          alt="Avatar">
                                     Jerome Bell
                                 </a>
@@ -362,7 +363,7 @@
                                    data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
                                     <i class="bx bx-bookmark"></i>
                                 </a>
-                                <img src="{% static 'assets/img/blog/03.jpg' %}" class="card-img-top" alt="Image">
+                                <img src="{% static 'img/blog/03.jpg' %}" class="card-img-top" alt="Image">
                             </div>
                             <div class="card-body pb-4">
                                 <div class="d-flex align-items-center justify-content-between mb-3">
@@ -376,7 +377,7 @@
                             </div>
                             <div class="card-footer py-4">
                                 <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
-                                    <img src="{% static 'assets/img/avatar/02.jpg' %}" class="rounded-circle me-3" width="48"
+                                    <img src="{% static 'img/avatar/02.jpg' %}" class="rounded-circle me-3" width="48"
                                          alt="Avatar">
                                     Ralph Edwards
                                 </a>
@@ -394,7 +395,7 @@
                                    data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
                                     <i class="bx bx-bookmark"></i>
                                 </a>
-                                <img src="{% static 'assets/img/blog/04.jpg' %}" class="card-img-top" alt="Image">
+                                <img src="{% static 'img/blog/04.jpg' %}" class="card-img-top" alt="Image">
                             </div>
                             <div class="card-body pb-4">
                                 <div class="d-flex align-items-center justify-content-between mb-3">
@@ -409,7 +410,7 @@
                             </div>
                             <div class="card-footer py-4">
                                 <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
-                                    <img src="{% static 'assets/img/avatar/03.jpg' %}" class="rounded-circle me-3" width="48"
+                                    <img src="{% static 'img/avatar/03.jpg' %}" class="rounded-circle me-3" width="48"
                                          alt="Avatar">
                                     Esther Howard
                                 </a>
@@ -427,7 +428,7 @@
                                    data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
                                     <i class="bx bx-bookmark"></i>
                                 </a>
-                                <img src="{% static 'assets/img/blog/05.jpg' %}" class="card-img-top" alt="Image">
+                                <img src="{% static 'img/blog/05.jpg' %}" class="card-img-top" alt="Image">
                             </div>
                             <div class="card-body pb-4">
                                 <div class="d-flex align-items-center justify-content-between mb-3">
@@ -441,7 +442,7 @@
                             </div>
                             <div class="card-footer py-4">
                                 <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
-                                    <img src="{% static 'assets/img/avatar/04.jpg' %}" class="rounded-circle me-3" width="48"
+                                    <img src="{% static 'img/avatar/04.jpg' %}" class="rounded-circle me-3" width="48"
                                          alt="Avatar">
                                     Jane Cooper
                                 </a>
@@ -459,7 +460,7 @@
                                    data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
                                     <i class="bx bx-bookmark"></i>
                                 </a>
-                                <img src="{% static 'assets/img/blog/06.jpg' %}" class="card-img-top" alt="Image">
+                                <img src="{% static 'img/blog/06.jpg' %}" class="card-img-top" alt="Image">
                             </div>
                             <div class="card-body pb-4">
                                 <div class="d-flex align-items-center justify-content-between mb-3">
@@ -473,7 +474,7 @@
                             </div>
                             <div class="card-footer py-4">
                                 <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
-                                    <img src="{% static 'assets/img/avatar/05.jpg' %}" class="rounded-circle me-3" width="48"
+                                    <img src="{% static 'img/avatar/05.jpg' %}" class="rounded-circle me-3" width="48"
                                          alt="Avatar">
                                     Albert Flores
                                 </a>
@@ -491,7 +492,7 @@
                                    data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
                                     <i class="bx bx-bookmark"></i>
                                 </a>
-                                <img src="{% static 'assets/img/blog/07.jpg' %}" class="card-img-top" alt="Image">
+                                <img src="{% static 'img/blog/07.jpg' %}" class="card-img-top" alt="Image">
                             </div>
                             <div class="card-body pb-4">
                                 <div class="d-flex align-items-center justify-content-between mb-3">
@@ -505,7 +506,7 @@
                             </div>
                             <div class="card-footer py-4">
                                 <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
-                                    <img src="{% static 'assets/img/avatar/02.jpg' %}" class="rounded-circle me-3" width="48"
+                                    <img src="{% static 'img/avatar/02.jpg' %}" class="rounded-circle me-3" width="48"
                                          alt="Avatar">
                                     Ralph Edwards
                                 </a>
@@ -557,7 +558,7 @@
             <article class="card border-0 shadow-sm overflow-hidden mb-4">
                 <div class="row g-0">
                     <div class="col-sm-4 position-relative bg-repeat-0 bg-size-cover"
-                         style="background-image: url({% static 'assets/img/blog/01.jpg' %}); min-height: 15rem;">
+                         style="background-image: url({% static 'img/blog/01.jpg' %}); min-height: 15rem;">
                         <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100"
                            aria-label="Read more"></a>
                         <a href="#"
@@ -583,7 +584,7 @@
                             <div class="d-flex align-items-center justify-content-between">
                                 <a href="#"
                                    class="d-flex align-items-center fw-bold text-dark text-decoration-none me-3">
-                                    <img src="{% static 'assets/img/avatar/01.jpg' %}" class="rounded-circle me-3" width="48"
+                                    <img src="{% static 'img/avatar/01.jpg' %}" class="rounded-circle me-3" width="48"
                                          alt="Avatar">
                                     Jerome Bell
                                 </a>
@@ -610,7 +611,7 @@
             <article class="card border-0 shadow-sm overflow-hidden mb-4">
                 <div class="row g-0">
                     <div class="col-sm-4 position-relative bg-repeat-0 bg-size-cover"
-                         style="background-image: url({% static 'assets/img/blog/06.jpg' %}); min-height: 15rem;">
+                         style="background-image: url({% static 'img/blog/06.jpg' %}); min-height: 15rem;">
                         <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100"
                            aria-label="Read more"></a>
                         <a href="#"
@@ -635,7 +636,7 @@
                             <div class="d-flex align-items-center justify-content-between">
                                 <a href="#"
                                    class="d-flex align-items-center fw-bold text-dark text-decoration-none me-3">
-                                    <img src="{% static 'assets/img/avatar/05.jpg' %}" class="rounded-circle me-3" width="48"
+                                    <img src="{% static 'img/avatar/05.jpg' %}" class="rounded-circle me-3" width="48"
                                          alt="Avatar">
                                     Albert Flores
                                 </a>
@@ -662,7 +663,7 @@
             <article class="card border-0 shadow-sm overflow-hidden mb-4">
                 <div class="row g-0">
                     <div class="col-sm-4 position-relative bg-repeat-0 bg-size-cover"
-                         style="background-image: url({% static 'assets/img/blog/05.jpg' %}); min-height: 15rem;">
+                         style="background-image: url({% static 'img/blog/05.jpg' %}); min-height: 15rem;">
                         <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100"
                            aria-label="Read more"></a>
                         <a href="#"
@@ -687,7 +688,7 @@
                             <div class="d-flex align-items-center justify-content-between">
                                 <a href="#"
                                    class="d-flex align-items-center fw-bold text-dark text-decoration-none me-3">
-                                    <img src="{% static 'assets/img/avatar/04.jpg' %}" class="rounded-circle me-3" width="48"
+                                    <img src="{% static 'img/avatar/04.jpg' %}" class="rounded-circle me-3" width="48"
                                          alt="Avatar">
                                     Jane Cooper
                                 </a>
@@ -714,7 +715,7 @@
             <article class="card border-0 shadow-sm overflow-hidden mb-4">
                 <div class="row g-0">
                     <div class="col-sm-4 position-relative bg-repeat-0 bg-size-cover"
-                         style="background-image: url({% static 'assets/img/blog/09.jpg' %}); min-height: 15rem;">
+                         style="background-image: url({% static 'img/blog/09.jpg' %}); min-height: 15rem;">
                         <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100"
                            aria-label="Read more"></a>
                         <a href="#"
@@ -739,7 +740,7 @@
                             <div class="d-flex align-items-center justify-content-between">
                                 <a href="#"
                                    class="d-flex align-items-center fw-bold text-dark text-decoration-none me-3">
-                                    <img src="{% static 'assets/img/avatar/02.jpg' %}" class="rounded-circle me-3" width="48"
+                                    <img src="{% static 'img/avatar/02.jpg' %}" class="rounded-circle me-3" width="48"
                                          alt="Avatar">
                                     Ralph Edwards
                                 </a>
@@ -779,8 +780,8 @@
             </div>
             <!-- Carousel -->
             <div class="col-xl-9">
-                <div class="swiper" data-swiper-options={% static ''{
-                     ' %}       "slidesPerView": 1,
+                <div class="swiper" data-swiper-options='{
+                            "slidesPerView": 1,
                             "spaceBetween": 24,
                             "loop": true,
                             "pagination": {
@@ -808,14 +809,14 @@
                                    data-bs-toggle="tooltip" data-bs-placement="left" title="Listen later">
                                     <i class="bx bx-bookmark"></i>
                                 </a>
-                                <img src="{% static 'assets/img/avatar/06.jpg' %}"
+                                <img src="{% static 'img/avatar/06.jpg' %}"
                                      class="position-absolute top-0 start-0 rounded-circle zindex-2 mt-3 ms-3"
                                      width="48" alt="Avatar">
                                 <span class="badge bg-dark position-absolute bottom-0 end-0 zindex-2 mb-3 me-3">0:25:43</span>
                                 <a href="blog-podcast.html"
                                    class="position-absolute top-0 start-0 w-100 h-100 bg-primary opacity-35 rounded-3"
                                    aria-label="Listen podcast"></a>
-                                <img src="{% static 'assets/img/blog/podcasts/04.jpg' %}" class="rounded-3" alt="Image">
+                                <img src="{% static 'img/blog/podcasts/04.jpg' %}" class="rounded-3" alt="Image">
                             </div>
                             <div class="d-flex align-items-center mb-2">
                                 <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Digital</a>
@@ -851,14 +852,14 @@
                                    data-bs-toggle="tooltip" data-bs-placement="left" title="Listen later">
                                     <i class="bx bx-bookmark"></i>
                                 </a>
-                                <img src="{% static 'assets/img/avatar/05.jpg' %}"
+                                <img src="{% static 'img/avatar/05.jpg' %}"
                                      class="position-absolute top-0 start-0 rounded-circle zindex-2 mt-3 ms-3"
                                      width="48" alt="Avatar">
                                 <span class="badge bg-dark position-absolute bottom-0 end-0 zindex-2 mb-3 me-3">1:12:05</span>
                                 <a href="blog-podcast.html"
                                    class="position-absolute top-0 start-0 w-100 h-100 bg-primary opacity-35 rounded-3"
                                    aria-label="Listen podcast"></a>
-                                <img src="{% static 'assets/img/blog/podcasts/05.jpg' %}" class="rounded-3" alt="Image">
+                                <img src="{% static 'img/blog/podcasts/05.jpg' %}" class="rounded-3" alt="Image">
                             </div>
                             <div class="d-flex align-items-center mb-2">
                                 <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Processes
@@ -895,14 +896,14 @@
                                    data-bs-toggle="tooltip" data-bs-placement="left" title="Listen later">
                                     <i class="bx bx-bookmark"></i>
                                 </a>
-                                <img src="{% static 'assets/img/avatar/01.jpg' %}"
+                                <img src="{% static 'img/avatar/01.jpg' %}"
                                      class="position-absolute top-0 start-0 rounded-circle zindex-2 mt-3 ms-3"
                                      width="48" alt="Avatar">
                                 <span class="badge bg-dark position-absolute bottom-0 end-0 zindex-2 mb-3 me-3">0:32:15</span>
                                 <a href="blog-podcast.html"
                                    class="position-absolute top-0 start-0 w-100 h-100 bg-primary opacity-35 rounded-3"
                                    aria-label="Listen podcast"></a>
-                                <img src="{% static 'assets/img/blog/podcasts/02.jpg' %}" class="rounded-3" alt="Image">
+                                <img src="{% static 'img/blog/podcasts/02.jpg' %}" class="rounded-3" alt="Image">
                             </div>
                             <div class="d-flex align-items-center mb-2">
                                 <a href="#"
@@ -939,14 +940,14 @@
                                    data-bs-toggle="tooltip" data-bs-placement="left" title="Listen later">
                                     <i class="bx bx-bookmark"></i>
                                 </a>
-                                <img src="{% static 'assets/img/avatar/04.jpg' %}"
+                                <img src="{% static 'img/avatar/04.jpg' %}"
                                      class="position-absolute top-0 start-0 rounded-circle zindex-2 mt-3 ms-3"
                                      width="48" alt="Avatar">
                                 <span class="badge bg-dark position-absolute bottom-0 end-0 zindex-2 mb-3 me-3">0:48:02</span>
                                 <a href="blog-podcast.html"
                                    class="position-absolute top-0 start-0 w-100 h-100 bg-primary opacity-35 rounded-3"
                                    aria-label="Listen podcast"></a>
-                                <img src="{% static 'assets/img/blog/podcasts/03.jpg' %}" class="rounded-3" alt="Image">
+                                <img src="{% static 'img/blog/podcasts/03.jpg' %}" class="rounded-3" alt="Image">
                             </div>
                             <div class="d-flex align-items-center mb-2">
                                 <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Marketing</a>
@@ -1062,5 +1063,6 @@
             </div>
         </div>
     </section>
-<!-- Footer -->
+    <!-- Footer -->
 
+{% endblock %}
