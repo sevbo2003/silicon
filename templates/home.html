@@ -1,8 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block content %}
-    <!-- Page wrapper for sticky footer -->
-    <!-- Wraps everything except footer to push footer to the bottom of the page if there is little content -->
     <!-- Navbar -->
     <!-- Hero -->
     <section class="dark-mode position-relative jarallax pb-xl-3" data-jarallax data-speed="0.4">
@@ -28,16 +26,16 @@
                         <img src="{% static 'img/blog/flame.svg' %}" width="24" alt="Flame icon" class="mt-n1 me-1">
                         Hot Topic
                     </div>
-                    <h1 class="display-5 pb-md-3">This Long-Awaited Technology May Finally Change the World</h1>
+                    <h1 class="display-5 pb-md-3">{{ hot.title }}</h1>
                     <div class="d-flex flex-wrap mb-md-5 mb-4 pb-md-2 text-white">
                         <div class="border-end border-light h-100 mb-2 pe-3 me-3">
-                            <span class="badge bg-faded-light fs-base">Technology</span>
+                            <span class="badge bg-faded-light fs-base">{{ hot.category }}</span>
                         </div>
-                        <div class="border-end border-light mb-2 pe-3 me-3 opacity-70">12 hours ago</div>
+                        <div class="border-end border-light mb-2 pe-3 me-3 opacity-70">{{ hot.created_at|timesince }}</div>
                         <div class="d-flex align-items-center mb-2 text-nowrap">
                             <div class="d-flex align-items-center me-3 opacity-70">
                                 <i class="bx bx-like fs-lg me-1"></i>
-                                <span class="fs-sm">8</span>
+                                <span class="fs-sm">{{ hot.likes.count }}</span>
                             </div>
                             <div class="d-flex align-items-center me-3 opacity-70">
                                 <i class="bx bx-comment fs-lg me-1"></i>
@@ -69,186 +67,40 @@
                         <div class="swiper-wrapper pe-md-2">
                             <div class="swiper-slide h-auto px-2">
                                 <div class="row row-cols-md-1 row-cols-sm-2 row-cols-1 g-md-4 g-3">
-                                    <!-- Article -->
-                                    <div class="col">
-                                        <article class="card h-100 border-0 shadow-sm card-hover-primary">
-                                            <div class="card-body pb-0">
-                                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                                    <a href="#"
-                                                       class="badge fs-sm text-nav bg-white text-decoration-none position-relative zindex-2">Digital</a>
-                                                    <span class="fs-sm text-muted">1 day ago</span>
+                                    {% for post in posts %}
+                                        <!-- Article -->
+                                        <div class="col">
+                                            <article class="card h-100 border-0 shadow-sm card-hover-primary">
+                                                <div class="card-body pb-0">
+                                                    <div class="d-flex align-items-center justify-content-between mb-3">
+                                                        <a href="#"
+                                                           class="badge fs-sm text-nav bg-white text-decoration-none position-relative zindex-2">{{ post.category }}</a>
+                                                        <span class="fs-sm text-muted">{{ post.created_at|timesince }}</span>
+                                                    </div>
+                                                    <h3 class="h5 mb-0">
+                                                        <a href="blog-single.html"
+                                                           class="stretched-link">{{ post.title }}</a>
+                                                    </h3>
                                                 </div>
-                                                <h3 class="h5 mb-0">
-                                                    <a href="blog-single.html" class="stretched-link">Mobile App
-                                                        Generates Data for the Energy Management</a>
-                                                </h3>
-                                            </div>
-                                            <div class="card-footer d-flex align-items-center py-4 text-muted border-top-0">
-                                                <div class="d-flex align-items-center me-3">
-                                                    <i class="bx bx-like fs-lg me-1"></i>
-                                                    <span class="fs-sm">8</span>
+                                                <div class="card-footer d-flex align-items-center py-4 text-muted border-top-0">
+                                                    <div class="d-flex align-items-center me-3">
+                                                        <i class="bx bx-like fs-lg me-1"></i>
+                                                        <span class="fs-sm">{{ post.likes.count }}</span>
+                                                    </div>
+                                                    <div class="d-flex align-items-center me-3">
+                                                        <i class="bx bx-comment fs-lg me-1"></i>
+                                                        <span class="fs-sm">4</span>
+                                                    </div>
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="bx bx-share-alt fs-lg me-1"></i>
+                                                        <span class="fs-sm">2</span>
+                                                    </div>
                                                 </div>
-                                                <div class="d-flex align-items-center me-3">
-                                                    <i class="bx bx-comment fs-lg me-1"></i>
-                                                    <span class="fs-sm">4</span>
-                                                </div>
-                                                <div class="d-flex align-items-center">
-                                                    <i class="bx bx-share-alt fs-lg me-1"></i>
-                                                    <span class="fs-sm">2</span>
-                                                </div>
-                                            </div>
-                                        </article>
-                                    </div>
-                                    <!-- Article -->
-                                    <div class="col">
-                                        <article class="card h-100 border-0 shadow-sm card-hover-primary">
-                                            <div class="card-body pb-0">
-                                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                                    <a href="#"
-                                                       class="badge fs-sm text-nav bg-white text-decoration-none position-relative zindex-2">Business</a>
-                                                    <span class="fs-sm text-muted">May 24, 2021</span>
-                                                </div>
-                                                <h3 class="h5 mb-0">
-                                                    <a href="blog-single.html" class="stretched-link">How the Millennial
-                                                        Lifestyle Changes as Service Prices Rise</a>
-                                                </h3>
-                                            </div>
-                                            <div class="card-footer d-flex align-items-center py-4 text-muted border-top-0">
-                                                <div class="d-flex align-items-center me-3">
-                                                    <i class="bx bx-like fs-lg me-1"></i>
-                                                    <span class="fs-sm">2</span>
-                                                </div>
-                                                <div class="d-flex align-items-center me-3">
-                                                    <i class="bx bx-comment fs-lg me-1"></i>
-                                                    <span class="fs-sm">0</span>
-                                                </div>
-                                                <div class="d-flex align-items-center">
-                                                    <i class="bx bx-share-alt fs-lg me-1"></i>
-                                                    <span class="fs-sm">3</span>
-                                                </div>
-                                            </div>
-                                        </article>
-                                    </div>
-                                    <!-- Article -->
-                                    <div class="col">
-                                        <article class="card h-100 border-0 shadow-sm card-hover-primary">
-                                            <div class="card-body pb-0">
-                                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                                    <a href="#"
-                                                       class="badge fs-sm text-nav bg-white text-decoration-none position-relative zindex-2">Digital</a>
-                                                    <span class="fs-sm text-muted">May 25, 2021</span>
-                                                </div>
-                                                <h3 class="h5 mb-0">
-                                                    <a href="blog-single.html" class="stretched-link">Inclusive
-                                                        Marketing: Why and How Does it Work?</a>
-                                                </h3>
-                                            </div>
-                                            <div class="card-footer d-flex align-items-center py-4 text-muted border-top-0">
-                                                <div class="d-flex align-items-center me-3">
-                                                    <i class="bx bx-like fs-lg me-1"></i>
-                                                    <span class="fs-sm">5</span>
-                                                </div>
-                                                <div class="d-flex align-items-center me-3">
-                                                    <i class="bx bx-comment fs-lg me-1"></i>
-                                                    <span class="fs-sm">0</span>
-                                                </div>
-                                                <div class="d-flex align-items-center">
-                                                    <i class="bx bx-share-alt fs-lg me-1"></i>
-                                                    <span class="fs-sm">2</span>
-                                                </div>
-                                            </div>
-                                        </article>
-                                    </div>
-                                    <!-- Article -->
-                                    <div class="col">
-                                        <article class="card h-100 border-0 shadow-sm card-hover-primary">
-                                            <div class="card-body pb-0">
-                                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                                    <a href="#"
-                                                       class="badge fs-sm text-nav bg-white text-decoration-none position-relative zindex-2">Technology</a>
-                                                    <span class="fs-sm text-muted">May 26, 2021</span>
-                                                </div>
-                                                <h3 class="h5 mb-0">
-                                                    <a href="blog-single.html" class="stretched-link">A Study on
-                                                        Smartwatch Design Qualities and People’s Preferences</a>
-                                                </h3>
-                                            </div>
-                                            <div class="card-footer d-flex align-items-center py-4 text-muted border-top-0">
-                                                <div class="d-flex align-items-center me-3">
-                                                    <i class="bx bx-like fs-lg me-1"></i>
-                                                    <span class="fs-sm">7</span>
-                                                </div>
-                                                <div class="d-flex align-items-center me-3">
-                                                    <i class="bx bx-comment fs-lg me-1"></i>
-                                                    <span class="fs-sm">4</span>
-                                                </div>
-                                                <div class="d-flex align-items-center">
-                                                    <i class="bx bx-share-alt fs-lg me-1"></i>
-                                                    <span class="fs-sm">1</span>
-                                                </div>
-                                            </div>
-                                        </article>
-                                    </div>
-                                    <!-- Article -->
-                                    <div class="col">
-                                        <article class="card h-100 border-0 shadow-sm card-hover-primary">
-                                            <div class="card-body pb-0">
-                                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                                    <a href="#"
-                                                       class="badge fs-sm text-nav bg-white text-decoration-none position-relative zindex-2">Startups</a>
-                                                    <span class="fs-sm text-muted">May 27, 2021</span>
-                                                </div>
-                                                <h3 class="h5 mb-0">
-                                                    <a href="blog-single.html" class="stretched-link">Why UX Design
-                                                        Matters and How it Affects Ranking</a>
-                                                </h3>
-                                            </div>
-                                            <div class="card-footer d-flex align-items-center py-4 text-muted border-top-0">
-                                                <div class="d-flex align-items-center me-3">
-                                                    <i class="bx bx-like fs-lg me-1"></i>
-                                                    <span class="fs-sm">5</span>
-                                                </div>
-                                                <div class="d-flex align-items-center me-3">
-                                                    <i class="bx bx-comment fs-lg me-1"></i>
-                                                    <span class="fs-sm">3</span>
-                                                </div>
-                                                <div class="d-flex align-items-center">
-                                                    <i class="bx bx-share-alt fs-lg me-1"></i>
-                                                    <span class="fs-sm">9</span>
-                                                </div>
-                                            </div>
-                                        </article>
-                                    </div>
-                                    <!-- Article -->
-                                    <div class="col">
-                                        <article class="card h-100 border-0 shadow-sm card-hover-primary">
-                                            <div class="card-body pb-0">
-                                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                                    <a href="#"
-                                                       class="badge fs-sm text-nav bg-white text-decoration-none position-relative zindex-2">Web</a>
-                                                    <span class="fs-sm text-muted">May 28, 2021</span>
-                                                </div>
-                                                <h3 class="h5 mb-0">
-                                                    <a href="blog-single.html" class="stretched-link">This Week in
-                                                        Search: New Limits and Exciting Features</a>
-                                                </h3>
-                                            </div>
-                                            <div class="card-footer d-flex align-items-center py-4 text-muted border-top-0">
-                                                <div class="d-flex align-items-center me-3">
-                                                    <i class="bx bx-like fs-lg me-1"></i>
-                                                    <span class="fs-sm">3</span>
-                                                </div>
-                                                <div class="d-flex align-items-center me-3">
-                                                    <i class="bx bx-comment fs-lg me-1"></i>
-                                                    <span class="fs-sm">5</span>
-                                                </div>
-                                                <div class="d-flex align-items-center">
-                                                    <i class="bx bx-share-alt fs-lg me-1"></i>
-                                                    <span class="fs-sm">2</span>
-                                                </div>
-                                            </div>
-                                        </article>
-                                    </div>
+                                            </article>
+                                        </div>
+                                        <!-- Article -->
+                                    {% endfor %}
+
                                 </div>
                             </div>
                         </div>
@@ -288,231 +140,44 @@
                         }
                         }'>
                 <div class="swiper-wrapper">
-                    <!-- Item -->
-                    <div class="swiper-slide h-auto px-2">
-                        <article class="card border-0 h-100 mx-1">
-                            <div class="position-relative">
-                                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100"
-                                   aria-label="Read more"></a>
-                                <a href="#"
-                                   class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
-                                   data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
-                                    <i class="bx bx-bookmark"></i>
-                                </a>
-                                <img src="{% static 'img/blog/01.jpg' %}" class="card-img-top" alt="Image">
-                            </div>
-                            <div class="card-body pb-4">
-                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                    <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Web
-                                        design</a>
-                                    <span class="fs-sm text-muted">May 19, 2021</span>
-                                </div>
-                                <h3 class="h5 mb-0">
-                                    <a href="blog-single.html">5 Bad Landing Page Examples & How We Would Fix Them</a>
-                                </h3>
-                            </div>
-                            <div class="card-footer py-4">
-                                <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
-                                    <img src="{% static 'img/avatar/06.jpg' %}" class="rounded-circle me-3" width="48"
-                                         alt="Avatar">
-                                    Annette Black
-                                </a>
-                            </div>
-                        </article>
-                    </div>
-                    <!-- Item -->
-                    <div class="swiper-slide h-auto px-2">
-                        <article class="card border-0 h-100 mx-1">
-                            <div class="position-relative">
-                                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100"
-                                   aria-label="Read more"></a>
-                                <a href="#"
-                                   class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
-                                   data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
-                                    <i class="bx bx-bookmark"></i>
-                                </a>
-                                <img src="{% static 'img/blog/02.jpg' %}" class="card-img-top" alt="Image">
-                            </div>
-                            <div class="card-body pb-4">
-                                <div class="d-flex align-items-center justify-content-between mb-3">
+                    {% for post in posts %}
+                        <!-- Item -->
+                        <div class="swiper-slide h-auto px-2">
+                            <article class="card border-0 h-100 mx-1">
+                                <div class="position-relative">
+                                    <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100"
+                                       aria-label="Read more"></a>
                                     <a href="#"
-                                       class="badge fs-sm text-nav bg-secondary text-decoration-none">Digital</a>
-                                    <span class="fs-sm text-muted">Sep 28, 2021</span>
+                                       class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
+                                       data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
+                                        <i class="bx bx-bookmark"></i>
+                                    </a>
+                                    <img src="{{ post.thumbnail.url }}" class="card-img-top" alt="Image">
                                 </div>
-                                <h3 class="h5 mb-0">
-                                    <a href="blog-single.html">Why UX Design Matters and How it Affects Ranking</a>
-                                </h3>
-                            </div>
-                            <div class="card-footer py-4">
-                                <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
-                                    <img src="{% static 'img/avatar/01.jpg' %}" class="rounded-circle me-3" width="48"
-                                         alt="Avatar">
-                                    Jerome Bell
-                                </a>
-                            </div>
-                        </article>
-                    </div>
-                    <!-- Item -->
-                    <div class="swiper-slide h-auto px-2">
-                        <article class="card border-0 h-100 mx-1">
-                            <div class="position-relative">
-                                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100"
-                                   aria-label="Read more"></a>
-                                <a href="#"
-                                   class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
-                                   data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
-                                    <i class="bx bx-bookmark"></i>
-                                </a>
-                                <img src="{% static 'img/blog/03.jpg' %}" class="card-img-top" alt="Image">
-                            </div>
-                            <div class="card-body pb-4">
-                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div class="card-body pb-4">
+                                    <div class="d-flex align-items-center justify-content-between mb-3">
+                                        <a href="#"
+                                           class="badge fs-sm text-nav bg-secondary text-decoration-none">{{ post.category }}</a>
+                                        <span class="fs-sm text-muted">{{ post.created_at|date:'M d, Y' }}</span>
+                                    </div>
+                                    <h3 class="h5 mb-0">
+                                        <a href="blog-single.html">{{ post.title }}</a>
+                                    </h3>
+                                </div>
+                                <div class="card-footer py-4">
                                     <a href="#"
-                                       class="badge fs-sm text-nav bg-secondary text-decoration-none">Business</a>
-                                    <span class="fs-sm text-muted">Sep 16, 2021</span>
+                                       class="d-flex align-items-center fw-bold text-dark text-decoration-none">
+                                        <img src="{{ post.author.avatar.url }}" class="rounded-circle me-3"
+                                             width="48"
+                                             alt="Avatar">
+                                        {{ post.author.first_name }} {{ post.author.last_name }}
+                                    </a>
                                 </div>
-                                <h3 class="h5 mb-0">
-                                    <a href="blog-single.html">This Week in Search: New Limits and Exciting Features</a>
-                                </h3>
-                            </div>
-                            <div class="card-footer py-4">
-                                <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
-                                    <img src="{% static 'img/avatar/02.jpg' %}" class="rounded-circle me-3" width="48"
-                                         alt="Avatar">
-                                    Ralph Edwards
-                                </a>
-                            </div>
-                        </article>
-                    </div>
-                    <!-- Item -->
-                    <div class="swiper-slide h-auto px-2">
-                        <article class="card border-0 h-100 mx-1">
-                            <div class="position-relative">
-                                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100"
-                                   aria-label="Read more"></a>
-                                <a href="#"
-                                   class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
-                                   data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
-                                    <i class="bx bx-bookmark"></i>
-                                </a>
-                                <img src="{% static 'img/blog/04.jpg' %}" class="card-img-top" alt="Image">
-                            </div>
-                            <div class="card-body pb-4">
-                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                    <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Processes
-                                        &amp; Tools</a>
-                                    <span class="fs-sm text-muted">12 hours ago</span>
-                                </div>
-                                <h3 class="h5 mb-0">
-                                    <a href="blog-single.html">Five Effective Lead Generation Techniques For Your
-                                        Business</a>
-                                </h3>
-                            </div>
-                            <div class="card-footer py-4">
-                                <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
-                                    <img src="{% static 'img/avatar/03.jpg' %}" class="rounded-circle me-3" width="48"
-                                         alt="Avatar">
-                                    Esther Howard
-                                </a>
-                            </div>
-                        </article>
-                    </div>
-                    <!-- Item -->
-                    <div class="swiper-slide h-auto px-2">
-                        <article class="card border-0 h-100 mx-1">
-                            <div class="position-relative">
-                                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100"
-                                   aria-label="Read more"></a>
-                                <a href="#"
-                                   class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
-                                   data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
-                                    <i class="bx bx-bookmark"></i>
-                                </a>
-                                <img src="{% static 'img/blog/05.jpg' %}" class="card-img-top" alt="Image">
-                            </div>
-                            <div class="card-body pb-4">
-                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                    <a href="#"
-                                       class="badge fs-sm text-nav bg-secondary text-decoration-none">Digital</a>
-                                    <span class="fs-sm text-muted">Oct 9, 2021</span>
-                                </div>
-                                <h3 class="h5 mb-0">
-                                    <a href="blog-single.html">Inclusive Marketing: Why and How Does it Work?</a>
-                                </h3>
-                            </div>
-                            <div class="card-footer py-4">
-                                <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
-                                    <img src="{% static 'img/avatar/04.jpg' %}" class="rounded-circle me-3" width="48"
-                                         alt="Avatar">
-                                    Jane Cooper
-                                </a>
-                            </div>
-                        </article>
-                    </div>
-                    <!-- Item -->
-                    <div class="swiper-slide h-auto px-2">
-                        <article class="card border-0 h-100 mx-1">
-                            <div class="position-relative">
-                                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100"
-                                   aria-label="Read more"></a>
-                                <a href="#"
-                                   class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
-                                   data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
-                                    <i class="bx bx-bookmark"></i>
-                                </a>
-                                <img src="{% static 'img/blog/06.jpg' %}" class="card-img-top" alt="Image">
-                            </div>
-                            <div class="card-body pb-4">
-                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                    <a href="#"
-                                       class="badge fs-sm text-nav bg-secondary text-decoration-none">Marketing</a>
-                                    <span class="fs-sm text-muted">Apr 2, 2021</span>
-                                </div>
-                                <h3 class="h5 mb-0">
-                                    <a href="blog-single.html">How Agile is Your Forecasting Process?</a>
-                                </h3>
-                            </div>
-                            <div class="card-footer py-4">
-                                <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
-                                    <img src="{% static 'img/avatar/05.jpg' %}" class="rounded-circle me-3" width="48"
-                                         alt="Avatar">
-                                    Albert Flores
-                                </a>
-                            </div>
-                        </article>
-                    </div>
-                    <!-- Item -->
-                    <div class="swiper-slide h-auto px-2">
-                        <article class="card border-0 h-100 mx-1">
-                            <div class="position-relative">
-                                <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100"
-                                   aria-label="Read more"></a>
-                                <a href="#"
-                                   class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
-                                   data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
-                                    <i class="bx bx-bookmark"></i>
-                                </a>
-                                <img src="{% static 'img/blog/07.jpg' %}" class="card-img-top" alt="Image">
-                            </div>
-                            <div class="card-body pb-4">
-                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                    <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Processes
-                                        &amp; Tools</a>
-                                    <span class="fs-sm text-muted">Sep 3, 2021</span>
-                                </div>
-                                <h3 class="h5 mb-0">
-                                    <a href="blog-single.html">Your Guide to Optimising A JavaScript-enabled Website</a>
-                                </h3>
-                            </div>
-                            <div class="card-footer py-4">
-                                <a href="#" class="d-flex align-items-center fw-bold text-dark text-decoration-none">
-                                    <img src="{% static 'img/avatar/02.jpg' %}" class="rounded-circle me-3" width="48"
-                                         alt="Avatar">
-                                    Ralph Edwards
-                                </a>
-                            </div>
-                        </article>
-                    </div>
+                            </article>
+                        </div>
+                        <!-- Item -->
+                    {% endfor %}
+
                 </div>
                 <!-- Pagination (bullets) -->
                 <div class="swiper-pagination position-relative pt-1 pt-sm-3 mt-5 d-xl-none d-flex"></div>
@@ -525,244 +190,74 @@
         <!-- Category tabs -->
         <ul class="nav nav-tabs justify-content-center mb-lg-5 mb-4 pb-lg-2">
             <li class="nav-item">
-                <a href="#" class="nav-link active">All Topics</a>
+                <a href="/" class="nav-link active">All Topics</a>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Digital</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Marketing</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Success Stories</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Startups</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Events</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Technology</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Business</a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Processes &amp; Tools</a>
-            </li>
+            {% for category in categories %}
+                <li class="nav-item">
+                    <a href="#" class="nav-link">{{ category }}</a>
+                </li>
+            {% endfor %}
+
+
         </ul>
         <!-- Blog articles -->
         <div class="pb-3">
             <!-- Blog item -->
-            <article class="card border-0 shadow-sm overflow-hidden mb-4">
-                <div class="row g-0">
-                    <div class="col-sm-4 position-relative bg-repeat-0 bg-size-cover"
-                         style="background-image: url({% static 'img/blog/01.jpg' %}); min-height: 15rem;">
-                        <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100"
-                           aria-label="Read more"></a>
-                        <a href="#"
-                           class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
-                           data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
-                            <i class="bx bx-bookmark"></i>
-                        </a>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Processes
-                                    &amp; Tools</a>
-                                <span class="fs-sm text-muted border-start ps-3 ms-3">Sep 3, 2021</span>
-                            </div>
-                            <h3 class="h4">
-                                <a href="blog-single.html">5 Bad Landing Page Examples &amp; How We Would Fix Them</a>
-                            </h3>
-                            <p>Tellus sagittis dolor pellentesque vel porttitor magna aliquet arcu. Interdum risus
-                                mauris pulvinar et vel. Morbi tellus, scelerisque vel metus. Scelerisque arcu egestas ac
-                                commodo, ac nibh. Pretium ac elit sed nulla nec.</p>
-                            <hr class="my-4">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <a href="#"
-                                   class="d-flex align-items-center fw-bold text-dark text-decoration-none me-3">
-                                    <img src="{% static 'img/avatar/01.jpg' %}" class="rounded-circle me-3" width="48"
-                                         alt="Avatar">
-                                    Jerome Bell
-                                </a>
-                                <div class="d-flex align-items-center text-muted">
-                                    <div class="d-flex align-items-center me-3">
-                                        <i class="bx bx-like fs-lg me-1"></i>
-                                        <span class="fs-sm">8</span>
-                                    </div>
-                                    <div class="d-flex align-items-center me-3">
-                                        <i class="bx bx-comment fs-lg me-1"></i>
-                                        <span class="fs-sm">7</span>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <i class="bx bx-share-alt fs-lg me-1"></i>
-                                        <span class="fs-sm">4</span>
+            {% for post in posts %}
+                <article class="card border-0 shadow-sm overflow-hidden mb-4">
+                    <div class="row g-0">
+                        <div class="col-sm-4 position-relative bg-repeat-0 bg-size-cover"
+                             style="background-image: url({{ post.image.url }}); min-height: 15rem;">
+                            <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100"
+                               aria-label="Read more"></a>
+                            <a href="#"
+                               class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
+                               data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
+                                <i class="bx bx-bookmark"></i>
+                            </a>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <a href="#"
+                                       class="badge fs-sm text-nav bg-secondary text-decoration-none">{{ post.category }}</a>
+                                    <span class="fs-sm text-muted border-start ps-3 ms-3">{{ post.created_at|date:'M d, Y' }}</span>
+                                </div>
+                                <h3 class="h4">
+                                    <a href="blog-single.html">{{ post.title }}</a>
+                                </h3>
+                                <p>{{ post.description }}.</p>
+                                <hr class="my-4">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <a href="#"
+                                       class="d-flex align-items-center fw-bold text-dark text-decoration-none me-3">
+                                        <img src="{{ post.author.avatar.url }}" class="rounded-circle me-3"
+                                             width="48"
+                                             alt="Avatar">
+                                        {{ post.author.first_name }} {{ post.author.last_name }}
+                                    </a>
+                                    <div class="d-flex align-items-center text-muted">
+                                        <div class="d-flex align-items-center me-3">
+                                            <i class="bx bx-like fs-lg me-1"></i>
+                                            <span class="fs-sm">{{ post.likes.count }}</span>
+                                        </div>
+                                        <div class="d-flex align-items-center me-3">
+                                            <i class="bx bx-comment fs-lg me-1"></i>
+                                            <span class="fs-sm">7</span>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <i class="bx bx-share-alt fs-lg me-1"></i>
+                                            <span class="fs-sm">4</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </article>
+                </article>
+            {% endfor %}
             <!-- Article -->
-            <article class="card border-0 shadow-sm overflow-hidden mb-4">
-                <div class="row g-0">
-                    <div class="col-sm-4 position-relative bg-repeat-0 bg-size-cover"
-                         style="background-image: url({% static 'img/blog/06.jpg' %}); min-height: 15rem;">
-                        <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100"
-                           aria-label="Read more"></a>
-                        <a href="#"
-                           class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
-                           data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
-                            <i class="bx bx-bookmark"></i>
-                        </a>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Startups</a>
-                                <span class="fs-sm text-muted border-start ps-3 ms-3">Sep 10, 2021</span>
-                            </div>
-                            <h3 class="h4">
-                                <a href="blog-single.html">How Agile is Your Forecasting Process?</a>
-                            </h3>
-                            <p>Nulla fringilla arcu justo augue fringilla in nunc volutpat sit. Dui diam, faucibus vitae
-                                ultricies vitae mollis nunc elementum. Et, habitasse porta neque tempor tellus ut.
-                                Sagittis odio porttitor erat viverra erat neque.</p>
-                            <hr class="my-4">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <a href="#"
-                                   class="d-flex align-items-center fw-bold text-dark text-decoration-none me-3">
-                                    <img src="{% static 'img/avatar/05.jpg' %}" class="rounded-circle me-3" width="48"
-                                         alt="Avatar">
-                                    Albert Flores
-                                </a>
-                                <div class="d-flex align-items-center text-muted">
-                                    <div class="d-flex align-items-center me-3">
-                                        <i class="bx bx-like fs-lg me-1"></i>
-                                        <span class="fs-sm">3</span>
-                                    </div>
-                                    <div class="d-flex align-items-center me-3">
-                                        <i class="bx bx-comment fs-lg me-1"></i>
-                                        <span class="fs-sm">6</span>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <i class="bx bx-share-alt fs-lg me-1"></i>
-                                        <span class="fs-sm">0</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <!-- Article -->
-            <article class="card border-0 shadow-sm overflow-hidden mb-4">
-                <div class="row g-0">
-                    <div class="col-sm-4 position-relative bg-repeat-0 bg-size-cover"
-                         style="background-image: url({% static 'img/blog/05.jpg' %}); min-height: 15rem;">
-                        <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100"
-                           aria-label="Read more"></a>
-                        <a href="#"
-                           class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
-                           data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
-                            <i class="bx bx-bookmark"></i>
-                        </a>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Digital</a>
-                                <span class="fs-sm text-muted border-start ps-3 ms-3">Oct 9, 2021</span>
-                            </div>
-                            <h3 class="h4">
-                                <a href="blog-single.html">Inclusive Marketing: Why and How Does it Work?</a>
-                            </h3>
-                            <p>Nunc aliquet scelerisque pellentesque imperdiet tortor elit, dictum. Tristique odio at
-                                dignissim viverra aliquet eleifend erat. Tellus, at arcu, egestas praesent. Varius
-                                aliquet pharetra adipiscing tincidunt orci nec neque.</p>
-                            <hr class="my-4">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <a href="#"
-                                   class="d-flex align-items-center fw-bold text-dark text-decoration-none me-3">
-                                    <img src="{% static 'img/avatar/04.jpg' %}" class="rounded-circle me-3" width="48"
-                                         alt="Avatar">
-                                    Jane Cooper
-                                </a>
-                                <div class="d-flex align-items-center text-muted">
-                                    <div class="d-flex align-items-center me-3">
-                                        <i class="bx bx-like fs-lg me-1"></i>
-                                        <span class="fs-sm">5</span>
-                                    </div>
-                                    <div class="d-flex align-items-center me-3">
-                                        <i class="bx bx-comment fs-lg me-1"></i>
-                                        <span class="fs-sm">0</span>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <i class="bx bx-share-alt fs-lg me-1"></i>
-                                        <span class="fs-sm">2</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <!-- Article -->
-            <article class="card border-0 shadow-sm overflow-hidden mb-4">
-                <div class="row g-0">
-                    <div class="col-sm-4 position-relative bg-repeat-0 bg-size-cover"
-                         style="background-image: url({% static 'img/blog/09.jpg' %}); min-height: 15rem;">
-                        <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100"
-                           aria-label="Read more"></a>
-                        <a href="#"
-                           class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
-                           data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
-                            <i class="bx bx-bookmark"></i>
-                        </a>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <a href="#" class="badge fs-sm text-nav bg-secondary text-decoration-none">Strategy</a>
-                                <span class="fs-sm text-muted border-start ps-3 ms-3">Sep 3, 2021</span>
-                            </div>
-                            <h3 class="h4">
-                                <a href="blog-single.html">This Long-Awaited Technology May Finally Change the World</a>
-                            </h3>
-                            <p>Sapien, nulla placerat in at. Vitae tincidunt quam ornare massa porttitor. Neque a vitae
-                                feugiat in sit habitant integer. Cursus et at pulvinar sed neque vitae. Aliquam vitae
-                                hac phasellus purus lectus facilisi. Vitae vel ac quam.</p>
-                            <hr class="my-4">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <a href="#"
-                                   class="d-flex align-items-center fw-bold text-dark text-decoration-none me-3">
-                                    <img src="{% static 'img/avatar/02.jpg' %}" class="rounded-circle me-3" width="48"
-                                         alt="Avatar">
-                                    Ralph Edwards
-                                </a>
-                                <div class="d-flex align-items-center text-muted">
-                                    <div class="d-flex align-items-center me-3">
-                                        <i class="bx bx-like fs-lg me-1"></i>
-                                        <span class="fs-sm">8</span>
-                                    </div>
-                                    <div class="d-flex align-items-center me-3">
-                                        <i class="bx bx-comment fs-lg me-1"></i>
-                                        <span class="fs-sm">7</span>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <i class="bx bx-share-alt fs-lg me-1"></i>
-                                        <span class="fs-sm">4</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
+
         </div>
         <!-- Load more btn -->
         <a href="#" class="btn btn-lg btn-outline-primary w-100">

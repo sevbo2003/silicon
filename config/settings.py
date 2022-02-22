@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'ckeditor',
+
     # local
     'blog.apps.BlogConfig',
     'accounts.apps.AccountsConfig',
