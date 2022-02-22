@@ -52,7 +52,7 @@
                                 <li><a href="account-security.html" class="dropdown-item">Security</a></li>
                                 <li><a href="account-saved-items.html" class="dropdown-item">Saved Items</a></li>
                                 <li><a href="account-collections.html" class="dropdown-item">My Collections</a></li>
-                                <li><a href="account-signup.html" class="dropdown-item link-danger">Log Out</a></li>
+                                <li><a href="{% url 'logout' %}" class="dropdown-item link-danger">Log Out</a></li>
                                 <hr class="dropdown-divider2">
                                 <li class="dropdown-item">
                                     <div class="form-check form-switch mode-switch pe-lg-1 ms-auto me-4"
@@ -66,9 +66,9 @@
                         <li>
                     </ul>
                 {% else %}
-                    <a href="/" class="btn btn-primary btn-sm fs-sm rounded d-lg-inline-flex" target="_blank"
+                    <a href="{% url 'login' %}" class="btn btn-primary btn-sm fs-sm rounded d-lg-inline-flex"
                        rel="noopener">
-                        &nbsp;Sign Up
+                        &nbsp;Sign In
                     </a>
                 {% endif %}
             </div>
@@ -95,7 +95,7 @@
                         <li><a href="account-security.html" class="dropdown-item">Security</a></li>
                         <li><a href="account-saved-items.html" class="dropdown-item">Saved Items</a></li>
                         <li><a href="account-collections.html" class="dropdown-item">My Collections</a></li>
-                        <li><a href="account-signup.html" class="dropdown-item link-danger">Log Out</a></li>
+                        <li><a href="{% url 'logout' %}" class="dropdown-item link-danger">Log Out</a></li>
                         <hr class="dropdown-divider2">
                         <li class="dropdown-item">
                             <div class="form-check form-switch mode-switch pe-lg-1 ms-auto me-4" data-bs-toggle="mode">
@@ -109,9 +109,9 @@
                 <li>
             </ul>
         {% else %}
-            <a href="/" class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex" target="_blank"
+            <a href="{% url 'login' %}" class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex"
                rel="noopener">
-                &nbsp;Sign Up
+                &nbsp;Sign In
             </a>
         {% endif %}
         <!-- AVATAR -->
