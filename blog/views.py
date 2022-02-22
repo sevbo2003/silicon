@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 
 
 def homepage(request):
-    return render(request, 'home.html')
+    return render(request, 'home.html', {})
 
 
