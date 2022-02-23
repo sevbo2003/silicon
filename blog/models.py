@@ -41,6 +41,9 @@ class Post(models.Model):
     hot_post = models.BooleanField(default=False)
     slug = models.SlugField()
 
+    def get_absolute_url(self):
+        return f"/post/{self.slug}/"
+
     class Meta:
         ordering = ('-created_at',)
 

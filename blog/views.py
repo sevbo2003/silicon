@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Post, Category, Tags
 from django.db.models import Q, Count
 from django.http import HttpResponseRedirect
@@ -42,4 +42,14 @@ def homepage(request):
         'cat_posts': cat_posts[::-1],
     }
     return render(request, 'home.html', context)
+
+
+def post_detail(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+    releated_arts = Post.objects.filter(category=post.category)[:3]
+    context = {
+        'post': post,
+        'releated_arts': releated_arts
+    }
+    return render(request, 'blog-single.html', context)
 

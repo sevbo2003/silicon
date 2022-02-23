@@ -49,7 +49,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="blog-single.html" class="btn btn-lg btn-primary">
+                    <a href="{{ hot.get_absolute_url }}" class="btn btn-lg btn-primary">
                         Read article
                         <i class="bx bx-right-arrow-alt ms-2 me-n1 lead"></i>
                     </a>
@@ -75,12 +75,12 @@
                                             <article class="card h-100 border-0 shadow-sm card-hover-primary">
                                                 <div class="card-body pb-0">
                                                     <div class="d-flex align-items-center justify-content-between mb-3">
-                                                        <a href="#"
+                                                        <a href="{{ post.get_absolute_url }}"
                                                            class="badge fs-sm text-nav bg-white text-decoration-none position-relative zindex-2">{{ post.category }}</a>
                                                         <span class="fs-sm text-muted">{{ post.created_at|date:"F d" }}</span>
                                                     </div>
                                                     <h3 class="h5 mb-0">
-                                                        <a href="blog-single.html"
+                                                        <a href="{{ post.get_absolute_url }}"
                                                            class="stretched-link">{{ post.title }}</a>
                                                     </h3>
                                                 </div>
@@ -147,9 +147,9 @@
                         <div class="swiper-slide h-auto px-2">
                             <article class="card border-0 h-100 mx-1">
                                 <div class="position-relative">
-                                    <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100"
+                                    <a href="{{ post.get_absolute_url }}" class="position-absolute top-0 start-0 w-100 h-100"
                                        aria-label="Read more"></a>
-                                    <a href="#"
+                                    <a href="{{ post.get_absolute_url }}"
                                        class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
                                        data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
                                         <i class="bx bx-bookmark"></i>
@@ -158,16 +158,16 @@
                                 </div>
                                 <div class="card-body pb-4">
                                     <div class="d-flex align-items-center justify-content-between mb-3">
-                                        <a href="#"
+                                        <a href="{{ post.get_absolute_url }}"
                                            class="badge fs-sm text-nav bg-secondary text-decoration-none">{{ post.category }}</a>
                                         <span class="fs-sm text-muted">{{ post.created_at|date:'F d, Y' }}</span>
                                     </div>
                                     <h3 class="h5 mb-0">
-                                        <a href="blog-single.html">{{ post.title }}</a>
+                                        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
                                     </h3>
                                 </div>
                                 <div class="card-footer py-4">
-                                    <a href="#"
+                                    <a href="{{ post.get_absolute_url }}"
                                        class="d-flex align-items-center fw-bold text-dark text-decoration-none">
                                         <img src="{{ post.author.image.url }}" class="rounded-circle me-3"
                                              width="48"
@@ -210,9 +210,9 @@
                     <div class="row g-0">
                         <div class="col-sm-4 position-relative bg-repeat-0 bg-size-cover"
                              style="background-image: url({{ post.image.url }}); min-height: 15rem;">
-                            <a href="blog-single.html" class="position-absolute top-0 start-0 w-100 h-100"
+                            <a href="{{ post.get_absolute_url }}" class="position-absolute top-0 start-0 w-100 h-100"
                                aria-label="Read more"></a>
-                            <a href="#"
+                            <a href="{{ post.get_absolute_url }}"
                                class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
                                data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
                                 <i class="bx bx-bookmark"></i>
@@ -221,17 +221,17 @@
                         <div class="col-sm-8">
                             <div class="card-body">
                                 <div class="d-flex align-items-center mb-3">
-                                    <a href="#"
+                                    <a href="{{ post.get_absolute_url }}"
                                        class="badge fs-sm text-nav bg-secondary text-decoration-none">{{ post.category }}</a>
                                     <span class="fs-sm text-muted border-start ps-3 ms-3">{{ post.created_at|date:'F d, Y' }}</span>
                                 </div>
                                 <h3 class="h4">
-                                    <a href="blog-single.html">{{ post.title }}</a>
+                                    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
                                 </h3>
                                 <p>{{ post.description }}.</p>
                                 <hr class="my-4">
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <a href="#"
+                                    <a href="{{ post.get_absolute_url }}"
                                        class="d-flex align-items-center fw-bold text-dark text-decoration-none me-3">
                                         <img src="{{ post.author.image.url }}" class="rounded-circle me-3"
                                              width="48"
