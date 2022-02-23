@@ -6,12 +6,20 @@ from accounts.models import CustomUser
 class Category(models.Model):
     category = models.CharField(max_length=50)
 
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+
     def __str__(self):
         return self.category
 
 
 class Tags(models.Model):
     tag = models.CharField(max_length=15)
+
+    class Meta:
+        verbose_name = 'tag'
+        verbose_name_plural = 'Tags'
 
     def __str__(self):
         return self.tag
@@ -31,6 +39,7 @@ class Post(models.Model):
     likes = models.ManyToManyField(CustomUser, blank=True, related_name='likes')
     savers = models.ManyToManyField(CustomUser, blank=True, related_name='savers')
     hot_post = models.BooleanField(default=False)
+    slug = models.SlugField()
 
     class Meta:
         ordering = ('-created_at',)

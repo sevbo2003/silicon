@@ -31,7 +31,7 @@
                         <div class="border-end border-light h-100 mb-2 pe-3 me-3">
                             <span class="badge bg-faded-light fs-base">{{ hot.category }}</span>
                         </div>
-                        <div class="border-end border-light mb-2 pe-3 me-3 opacity-70">{{ hot.created_at|timesince }}</div>
+                        <div class="border-end border-light mb-2 pe-3 me-3 opacity-70">{{ hot.created_at|timesince }} ago</div>
                         <div class="d-flex align-items-center mb-2 text-nowrap">
                             <div class="d-flex align-items-center me-3 opacity-70">
                                 <i class="bx bx-like fs-lg me-1"></i>
@@ -67,7 +67,7 @@
                         <div class="swiper-wrapper pe-md-2">
                             <div class="swiper-slide h-auto px-2">
                                 <div class="row row-cols-md-1 row-cols-sm-2 row-cols-1 g-md-4 g-3">
-                                    {% for post in posts %}
+                                    {% for post in cat_posts %}
                                         <!-- Article -->
                                         <div class="col">
                                             <article class="card h-100 border-0 shadow-sm card-hover-primary">
@@ -75,7 +75,7 @@
                                                     <div class="d-flex align-items-center justify-content-between mb-3">
                                                         <a href="#"
                                                            class="badge fs-sm text-nav bg-white text-decoration-none position-relative zindex-2">{{ post.category }}</a>
-                                                        <span class="fs-sm text-muted">{{ post.created_at|timesince }}</span>
+                                                        <span class="fs-sm text-muted">{{ post.created_at|date:"F d" }}</span>
                                                     </div>
                                                     <h3 class="h5 mb-0">
                                                         <a href="blog-single.html"
@@ -140,7 +140,7 @@
                         }
                         }'>
                 <div class="swiper-wrapper">
-                    {% for post in posts %}
+                    {% for post in top_posts %}
                         <!-- Item -->
                         <div class="swiper-slide h-auto px-2">
                             <article class="card border-0 h-100 mx-1">
@@ -158,7 +158,7 @@
                                     <div class="d-flex align-items-center justify-content-between mb-3">
                                         <a href="#"
                                            class="badge fs-sm text-nav bg-secondary text-decoration-none">{{ post.category }}</a>
-                                        <span class="fs-sm text-muted">{{ post.created_at|date:'M d, Y' }}</span>
+                                        <span class="fs-sm text-muted">{{ post.created_at|date:'F d, Y' }}</span>
                                     </div>
                                     <h3 class="h5 mb-0">
                                         <a href="blog-single.html">{{ post.title }}</a>
@@ -167,7 +167,7 @@
                                 <div class="card-footer py-4">
                                     <a href="#"
                                        class="d-flex align-items-center fw-bold text-dark text-decoration-none">
-                                        <img src="{{ post.author.avatar.url }}" class="rounded-circle me-3"
+                                        <img src="{{ post.author.image.url }}" class="rounded-circle me-3"
                                              width="48"
                                              alt="Avatar">
                                         {{ post.author.first_name }} {{ post.author.last_name }}
@@ -221,7 +221,7 @@
                                 <div class="d-flex align-items-center mb-3">
                                     <a href="#"
                                        class="badge fs-sm text-nav bg-secondary text-decoration-none">{{ post.category }}</a>
-                                    <span class="fs-sm text-muted border-start ps-3 ms-3">{{ post.created_at|date:'M d, Y' }}</span>
+                                    <span class="fs-sm text-muted border-start ps-3 ms-3">{{ post.created_at|date:'F d, Y' }}</span>
                                 </div>
                                 <h3 class="h4">
                                     <a href="blog-single.html">{{ post.title }}</a>
@@ -231,7 +231,7 @@
                                 <div class="d-flex align-items-center justify-content-between">
                                     <a href="#"
                                        class="d-flex align-items-center fw-bold text-dark text-decoration-none me-3">
-                                        <img src="{{ post.author.avatar.url }}" class="rounded-circle me-3"
+                                        <img src="{{ post.author.image.url }}" class="rounded-circle me-3"
                                              width="48"
                                              alt="Avatar">
                                         {{ post.author.first_name }} {{ post.author.last_name }}
