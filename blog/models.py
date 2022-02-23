@@ -1,5 +1,6 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+from accounts.models import CustomUser
 
 
 class Category(models.Model):
@@ -17,7 +18,7 @@ class Tags(models.Model):
 
 
 class Post(models.Model):
-    # author = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tags)
     title = models.CharField(max_length=100)
@@ -27,8 +28,8 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True)
     thumbnail = models.ImageField(upload_to='posts/thumbnails')
     image = models.ImageField(upload_to='posts/images')
-    # likes = models.ManyToManyField(Profile, blank=True, related_name='likes')
-    # savers = models.ManyToManyField(Profile, blank=True, related_name='savers')
+    likes = models.ManyToManyField(CustomUser, blank=True, related_name='likes')
+    savers = models.ManyToManyField(CustomUser, blank=True, related_name='savers')
     hot_post = models.BooleanField(default=False)
 
     class Meta:
