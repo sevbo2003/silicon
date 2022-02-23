@@ -1,6 +1,6 @@
 {% load static %}
 <!-- Footer -->
-<footer class="footer dark-mode bg-dark pt-5 pb-4 pb-lg-5">
+<footer id="footer1" class="footer dark-mode bg-dark pt-5 pb-4 pb-lg-5">
     <div class="container pt-lg-4">
         <div class="row pb-5">
             <div class="col-lg-4 col-md-6">
@@ -10,10 +10,10 @@
                 <p class="fs-sm text-light opacity-70 pb-lg-3 mb-4">Proin ipsum pharetra, senectus eget scelerisque
                     varius pretium platea velit. Lacus, eget eu vitae nullam proin turpis etiam mi sit. Non feugiat
                     feugiat egestas nulla nec. Arcu tempus, eget elementum dolor ullamcorper sodales ultrices eros.</p>
-                <form class="needs-validation" novalidate>
-                    <label for="subscr-email" class="form-label">Subscribe to our newsletter</label>
+                <form method="post" class="needs-validation" action="{% url 'home' %}">{% csrf_token %}
+                    <label for="id_email" class="form-label">Subscribe to our newsletter</label>
                     <div class="input-group">
-                        <input type="email" id="subscr-email" class="form-control rounded-start ps-5"
+                        <input type="email" id="id_email" name="email" class="form-control rounded-start ps-5"
                                placeholder="Your email" required>
                         <i class="bx bx-envelope fs-lg text-muted position-absolute top-50 start-0 translate-middle-y ms-3 zindex-5"></i>
                         <div class="invalid-tooltip position-absolute top-100 start-0">Please provide a valid email

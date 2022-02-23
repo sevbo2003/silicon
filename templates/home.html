@@ -31,7 +31,9 @@
                         <div class="border-end border-light h-100 mb-2 pe-3 me-3">
                             <span class="badge bg-faded-light fs-base">{{ hot.category }}</span>
                         </div>
-                        <div class="border-end border-light mb-2 pe-3 me-3 opacity-70">{{ hot.created_at|timesince }} ago</div>
+                        <div class="border-end border-light mb-2 pe-3 me-3 opacity-70">{{ hot.created_at|timesince }}
+                            ago
+                        </div>
                         <div class="d-flex align-items-center mb-2 text-nowrap">
                             <div class="d-flex align-items-center me-3 opacity-70">
                                 <i class="bx bx-like fs-lg me-1"></i>
@@ -500,15 +502,15 @@
                                 <div class="col">
                                     <div class="form-check mb-0">
                                         <input type="checkbox" id="s-daily-newsletter" class="form-check-input">
-                                        <label for="s-daily-newsletter" class="form-check-label">Daily
-                                            Newsletter</label>
+                                        <label for="s-daily-newsletter" class="form-check-label">Weekly
+                                            Articles</label>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-check mb-0">
                                         <input type="checkbox" id="s-advertising-updates" class="form-check-input"
                                                checked>
-                                        <label for="s-advertising-updates" class="form-check-label">Advertising
+                                        <label for="s-advertising-updates" class="form-check-label">Lesson
                                             Updates</label>
                                     </div>
                                 </div>
@@ -527,29 +529,29 @@
                                 <div class="col">
                                     <div class="form-check mb-0">
                                         <input type="checkbox" id="s-startups-weekly" class="form-check-input">
-                                        <label for="s-startups-weekly" class="form-check-label">Startups Weekly</label>
+                                        <label for="s-startups-weekly" class="form-check-label">Podcasts Weekly</label>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-check mb-0">
                                         <input id="s-podcasts" type="checkbox" class="form-check-input">
-                                        <label for="s-podcasts" class="form-check-label">Podcasts</label>
+                                        <label for="s-podcasts" class="form-check-label">Special offers</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- Email field -->
-                    <form class="d-flex flex-sm-row flex-column mb-3 needs-validation" novalidate>
+                    <form class="d-flex flex-sm-row flex-column mb-3 needs-validation" method="post" action=".">
+                        {% csrf_token %}
                         <div class="input-group me-sm-3 mb-sm-0 mb-3">
                             <i class="bx bx-envelope position-absolute start-0 top-50 translate-middle-y ms-3 zindex-5 fs-5 text-muted"></i>
-                            <input type="email" class="form-control form-control-lg rounded-3 ps-5"
-                                   placeholder="Your email" required>
+                            {{ email_form }}
                             <div class="invalid-tooltip position-absolute start-0 top-0 mt-n4">Please provide a valid
                                 email address!
                             </div>
                         </div>
-                        <button class="btn btn-lg btn-primary">Subscribe *</button>
+                        <button type="submit" class="btn btn-lg btn-primary" >Subscribe *</button>
                     </form>
                     <div class="form-text fs-sm text-sm-start text-center">
                         * Yes, I agree to the <a href="#">terms</a> and <a href="#">privacy policy</a>.
