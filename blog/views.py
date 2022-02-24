@@ -9,6 +9,7 @@ from datetime import datetime
 from django.conf import settings
 from .forms import CommentForm
 from accounts.models import CustomUser
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 def homepage(request):
@@ -44,6 +45,32 @@ def homepage(request):
         'cat_posts': cat_posts[::-1],
     }
     return render(request, 'home.html', context)
+
+
+def post_list(request):
+    categories = Category.objects.all()
+    tags = Tags.objects.all()[:6]
+    top_posts = Post.objects.annotate(num=Count('likes')).order_by('-num')[:3]
+    query = request.GET.get('search')
+    if query:
+        posts = Post.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
+    else:
+        posts = Post.objects.all()
+    page_num = request.GET.get('page', 1)
+    paginator = Paginator(posts, 6)
+    try:
+        posts = paginator.page(page_num)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    context = {
+        'posts': posts,
+        'top_posts': top_posts,
+        'categories': categories,
+        'tags': tags,
+    }
+    return render(request, 'post_list.html', context)
 
 
 def post_detail(request, slug):
