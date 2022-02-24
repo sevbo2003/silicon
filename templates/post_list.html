@@ -5,7 +5,7 @@
     <nav class="container mt-lg-4" aria-label="breadcrumb">
         <ol class="breadcrumb mb-0 pt-5">
             <li class="breadcrumb-item">
-                <a href="index.html"><i class="bx bx-home-alt fs-lg me-1"></i>Home</a>
+                <a href="{% url 'home' %}"><i class="bx bx-home-alt fs-lg me-1"></i>Home</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">Blog List with Sidebar</li>
         </ol>
@@ -57,7 +57,7 @@
                             <div class="row g-0">
                                 <div class="col-sm-5 position-relative bg-position-center bg-repeat-0 bg-size-cover rounded-3"
                                      style="background-image: url({{ post.thumbnail.url }}); min-height: 15rem;">
-                                    <a href="post_detail.html" class="position-absolute top-0 start-0 w-100 h-100"
+                                    <a href="{{ post.get_absolute_url }}" class="position-absolute top-0 start-0 w-100 h-100"
                                        aria-label="Read more"></a>
                                     <a href="#"
                                        class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
@@ -305,7 +305,7 @@
                         </div>
                     </div>
                     <!-- Email field -->
-                    <form class="d-flex flex-sm-row flex-column mb-3 needs-validation" method="post" action=".">
+                    <form class="d-flex flex-sm-row flex-column mb-3 needs-validation" method="post" action="{% url 'home' %}">
                         {% csrf_token %}
                         <div class="input-group me-sm-3 mb-sm-0 mb-3">
                             <i class="bx bx-envelope position-absolute start-0 top-50 translate-middle-y ms-3 zindex-5 fs-5 text-muted"></i>
