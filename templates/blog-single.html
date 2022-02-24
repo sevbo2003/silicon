@@ -29,7 +29,7 @@
                     </div>
                     <div class="d-flex align-items-center me-3">
                         <i class="bx bx-comment fs-base me-1"></i>
-                        <span class="fs-sm">4</span>
+                        <span class="fs-sm">{{ post.comments.all.count }}</span>
                     </div>
                     <div class="d-flex align-items-center">
                         <i class="bx bx-share-alt fs-base me-1"></i>
@@ -87,62 +87,40 @@
         </div>
     </section>
     <!-- Post comments -->
-    <section class="container mb-4 pt-lg-4 pb-lg-3">
-        <h2 class="h1 text-center text-sm-start">4 comments</h2>
+    <section id="comment-section" class="container mb-4 pt-lg-4 pb-lg-3">
+        {% if post.comments.all.count != 0 %}
+            <h2 class="h1 text-center text-sm-start">{{ post.comments.all.count }} comments so far</h2>
+        {% else %}
+            <h2 class="h1 text-center text-sm-start">No comments yet. Write first one</h2>
+        {% endif %}
         <div class="row">
             <!-- Comments -->
             <div class="col-lg-9">
                 <!-- Comment -->
-                <div class="py-4">
-                    <div class="d-flex align-items-center justify-content-between pb-2 mb-1">
-                        <div class="d-flex align-items-center me-3">
-                            <img src="{% static 'img/avatar/03.jpg' %}" class="rounded-circle" width="48" alt="Avatar">
-                            <div class="ps-3">
-                                <h6 class="fw-semibold mb-0">Esther Howard</h6>
-                                <span class="fs-sm text-muted">4 mins ago</span>
+                {% for comment in post.comments.all %}
+
+
+                    <div class="py-4">
+                        <div class="d-flex align-items-center justify-content-between pb-2 mb-1">
+                            <div class="d-flex align-items-center me-3">
+                                <img src="{{ comment.user.image.url }}" class="rounded-circle" width="48"
+                                     alt="Avatar">
+                                <div class="ps-3">
+                                    {% if comment.user.first_name != '' %}
+                                        <h6 class="fw-semibold mb-0">{{ comment.user.first_name }} {{ comment.user.last_name }}</h6>
+                                    {% else %}
+                                        <h6 class="fw-semibold mb-0">@{{ comment.user.username }}</h6>
+                                    {% endif %}
+                                    <span class="fs-sm text-muted">{{ comment.created_at|date:'F d | H:i' }}</span>
+                                </div>
                             </div>
                         </div>
+                        <p class="mb-0">{{ comment.comment }}.</p>
                     </div>
-                    <p class="mb-0">Nibh enim porta ut augue felis, donec sit luctus. Quis ullamcorper dolor sit mauris.
-                        Hendrerit eu libero, eu tristique sodales ultrices etiam adipiscing. Donec viverra sodales arcu
-                        gravida nibh at. Neque lobortis quis porta integer et placerat lectus scelerisque. Velit eget
-                        malesuada morbi faucibus at sed euismod. Tortor, eu ut id tincidunt leo placerat luctus.</p>
-                </div>
-                <hr class="my-2">
+                    <hr class="my-2">
+                {% endfor %}
+
                 <!-- Comment -->
-                <div class="py-4">
-                    <div class="d-flex align-items-center justify-content-between pb-2 mb-1">
-                        <div class="d-flex align-items-center me-3">
-                            <img src="{% static 'img/avatar/03.jpg' %}" class="rounded-circle" width="48" alt="Avatar">
-                            <div class="ps-3">
-                                <h6 class="fw-semibold mb-0">Ralph Edwards</h6>
-                                <span class="fs-sm text-muted">September 9 at 12:48</span>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="mb-0 pb-2">Eget amet, ac scelerisque tellus sed. Sapien duis sit neque pulvinar. Est sit
-                        aenean nisl etiam donec mattis ut diam. Luctus massa eu nunc aliquam viverra tempus, eu amet,
-                        luctus. Ac faucibus vestibulum eu lacus. Ullamcorper sem ultrices tincidunt pharetra?</p>
-                    <!-- Comment reply -->
-                </div>
-                <hr class="my-2">
-                <!-- Comment -->
-                <div class="py-4">
-                    <div class="d-flex align-items-center justify-content-between pb-2 mb-1">
-                        <div class="d-flex align-items-center me-3">
-                            <img src="{% static 'img/avatar/03.jpg' %}" class="rounded-circle" width="48" alt="Avatar">
-                            <div class="ps-3">
-                                <h6 class="fw-semibold mb-0">Cameron Williamson</h6>
-                                <span class="fs-sm text-muted">March 24 at 8:20</span>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="mb-0">Mattis id ut sed arcu metus elit faucibus condimentum aliquam. Nam adipiscing diam
-                        et suspendisse. Sagittis massa maecenas laoreet nulla amet nunc sagittis, pulvinar neque. Duis
-                        imperdiet ipsum suspendisse massa lectus habitasse. Id ante volutpat hendrerit augue parturient
-                        eget. Ac vitae posuere leo morbi vitae at hac lectus. Nibh neque quam quis amet mattis sit.
-                        Faucibus risus at sit tempus ut.</p>
-                </div>
             </div>
         </div>
     </section>
@@ -151,24 +129,23 @@
         <div class="row gy-5">
             <!-- Comment form -->
             <div class="col-lg-9">
-                    <div class="card-body w-100 px-0" style="max-width: 746px;">
-                        {% if user.is_authenticated %}
-                            <form class="row gy-4 needs-validation" method="post">
-                                    <textarea id="c-comment" class="form-control form-control-lg" rows="3"
-                                              placeholder="Type your comment here..." required></textarea>
-                                    <button type="submit" class="btn btn-lg btn-primary w-sm-auto w-100 mt-2">Post
-                                        comment
-                                    </button>
-                            </form>
-                        {% else %}
-                            <h3 class="mb-0">You need <a href="{% url 'login' %}"
-                                                        class="fw-semibold link-info">Log in</a> or <a
-                                    href="{% url 'signup' %}" class="fw-semibold link-info">Sign Up</a> to
-                                write a comment.</h3>
-                        {% endif %}
+                <div class="card-body w-100 px-0" style="max-width: 746px;">
+                    {% if user.is_authenticated %}
+                        <form class="row gy-4 needs-validation" method="post">{% csrf_token %}
+                            <textarea id="id_comment" type="text" name="comment" class="form-control form-control-lg"
+                                      rows="3"
+                                      placeholder="Type your comment here..." required></textarea>
+                            <button type="submit" class="btn btn-lg btn-primary w-sm-auto w-100 mt-2">Post comment
+                            </button>
+                        </form>
+                    {% else %}
+                        <h3 class="mb-0">You need <a href="{% url 'login' %}"
+                                                     class="fw-semibold link-info">Log in</a> or <a
+                                href="{% url 'signup' %}" class="fw-semibold link-info">Sign Up</a> to
+                            write a comment.</h3>
+                    {% endif %}
 
-                    </div>
-{#                </div>#}
+                </div>
             </div>
             <!-- Subscription form + Sharing -->
             <div class="col-lg-3 position-relative" id="footer1">
@@ -240,7 +217,8 @@
                     <div class="swiper-slide h-auto pb-3">
                         <article class="card border-0 shadow-sm h-100 mx-2">
                             <div class="position-relative">
-                                <a href="{{ rpost.get_absolute_url }}" class="position-absolute top-0 start-0 w-100 h-100"
+                                <a href="{{ rpost.get_absolute_url }}"
+                                   class="position-absolute top-0 start-0 w-100 h-100"
                                    aria-label="Read more"></a>
                                 <a href="{{ rpost.get_absolute_url }}"
                                    class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"

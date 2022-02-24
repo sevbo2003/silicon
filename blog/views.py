@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from .models import Post, Category, Tags
+from .models import Post, Category, Tags, Comments
 from django.db.models import Q, Count
 from django.http import HttpResponseRedirect
 from accounts.models import Subscriber
@@ -7,6 +7,8 @@ from accounts.forms import SubscriberForm
 from django.core.mail import send_mail
 from datetime import datetime
 from django.conf import settings
+from .forms import CommentForm
+from accounts.models import CustomUser
 
 
 def homepage(request):
@@ -47,9 +49,21 @@ def homepage(request):
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
     releated_arts = Post.objects.filter(category=post.category)[:3]
+    # print(request.user.first_name == '')
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.cleaned_data.get('comment')
+            p = Comments(comment=comment, post=post,user=request.user ,created_at=datetime)
+            p.save()
+            path = f"{post.get_absolute_url()}#comment-section"
+            return HttpResponseRedirect(path)
+    else:
+        comment_form = CommentForm()
     context = {
         'post': post,
-        'releated_arts': releated_arts
+        'releated_arts': releated_arts,
+        'comment_form': comment_form
     }
     return render(request, 'blog-single.html', context)
 
