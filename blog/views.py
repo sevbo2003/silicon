@@ -87,10 +87,20 @@ def post_detail(request, slug):
             return HttpResponseRedirect(path)
     else:
         comment_form = CommentForm()
+    comments = post.comments.all()
+    page_num = request.GET.get('page', 1)
+    paginator = Paginator(comments, 8)
+    try:
+        comments = paginator.page(page_num)
+    except PageNotAnInteger:
+        comments = paginator.page(1)
+    except EmptyPage:
+        comments = paginator.page(paginator.num_pages)
     context = {
         'post': post,
         'releated_arts': releated_arts,
-        'comment_form': comment_form
+        'comment_form': comment_form,
+        'comments': comments
     }
-    return render(request, 'blog-single.html', context)
+    return render(request, 'post_detail.html', context)
 
