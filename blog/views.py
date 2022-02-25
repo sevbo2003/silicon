@@ -10,6 +10,7 @@ from django.conf import settings
 from .forms import CommentForm
 from accounts.models import CustomUser
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.views.decorators.csrf import csrf_exempt
 
 
 def homepage(request):
@@ -75,7 +76,7 @@ def post_list(request):
 
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
-    releated_arts = Post.objects.filter(category=post.category)[:3]
+    releated_arts = Post.objects.filter(category=post.category)[:3].exclude(post=post)
     # print(request.user.first_name == '')
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)
