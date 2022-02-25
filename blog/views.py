@@ -104,3 +104,8 @@ def post_detail(request, slug):
     }
     return render(request, 'post_detail.html', context)
 
+
+
+# Accaunt Details
+def account_details(request):
+    return render(request, 'account-details.html')
