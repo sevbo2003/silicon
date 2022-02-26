@@ -12,13 +12,21 @@ from accounts.models import CustomUser
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse_lazy, reverse
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def like_view(request, pk):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
     post.likes.add(request.user)
     path = f"{post.get_absolute_url()}#share-post"
     return HttpResponseRedirect(path)
+
+
+def save_view(request, pk):
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    post.savers.add(request.user)
+    return HttpResponseRedirect(reverse('account_saves'))
 
 def homepage(request):
     hot = Post.objects.filter(hot_post=True)[0]
@@ -40,7 +48,8 @@ def homepage(request):
             else:
                 p = Subscriber(email=email, joined=datetime)
                 p.save()
-                send_mail('Subscriptions', 'You successfully subscribed to our newsletter. Thanks)', 'sevbofx@gmail.com', (email,))
+                send_mail('Subscriptions', 'You successfully subscribed to our newsletter. Thanks)',
+                          'sevbofx@gmail.com', (email,))
                 path = f"{request.META.get('HTTP_REFERER')}#footer1"
                 return HttpResponseRedirect(path)
     else:
@@ -91,7 +100,7 @@ def post_detail(request, slug):
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
             comment = comment_form.cleaned_data.get('comment')
-            p = Comments(comment=comment, post=post,user=request.user ,created_at=datetime)
+            p = Comments(comment=comment, post=post, user=request.user, created_at=datetime)
             p.save()
             path = f"{post.get_absolute_url()}#comment-section"
             return HttpResponseRedirect(path)
@@ -122,7 +131,8 @@ def category_posts(request, category):
     top_posts = Post.objects.annotate(num=Count('likes')).order_by('-num')[:3]
     query = request.GET.get('search')
     if query:
-        posts = Post.objects.filter(category=category).filter(Q(title__icontains=query) | Q(description__icontains=query))
+        posts = Post.objects.filter(category=category).filter(
+            Q(title__icontains=query) | Q(description__icontains=query))
     else:
         posts = Post.objects.filter(category=category)
     page_num = request.GET.get('page', 1)
@@ -148,7 +158,11 @@ def category_posts(request, category):
     return render(request, 'category_posts.html', context)
 
 
-
 # Accaunt Details
 def account_details(request):
     return render(request, 'account-details.html')
+
+
+def account_saves(request):
+    posts = Post.objects.filter(savers=request.user)
+    return render(request, 'account-saved-items.html', {'posts': posts})
