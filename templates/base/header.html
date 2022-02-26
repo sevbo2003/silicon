@@ -17,10 +17,10 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a href="{% url 'post_list' %}" class="nav-link">Posts</a>
-{#                        <ul class="dropdown-menu">#}
-{#                            <li><a href="{% url 'post_list' %}" class="dropdown-item">Articles</a></li>#}
-{#                            <li><a href="#podcasts" class="dropdown-item">Podcasts</a></li>#}
-{#                        </ul>#}
+                        {#                        <ul class="dropdown-menu">#}
+                        {#                            <li><a href="{% url 'post_list' %}" class="dropdown-item">Articles</a></li>#}
+                        {#                            <li><a href="#podcasts" class="dropdown-item">Podcasts</a></li>#}
+                        {#                        </ul>#}
                     </li>
                     <li class="nav-item dropdown">
                         <a href="/" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
@@ -44,14 +44,22 @@
                                      alt="John Doe"><span style="margin-left:10px;">@{{ user.username }}</span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu2">
-                                <li><a class="dropdown-item"
-                                       style="color: #4044EE; font-weight: bolder; font-size: 0.9rem;">{{ user.first_name }} {{ user.last_name }}</a>
+                                <li>
+                                    {% if user.first_name != '' %}
+                                        <a class="dropdown-item"
+                                           style="color: #4044EE; font-weight: bolder; font-size: 0.9rem;">{{ user.first_name }} {{ user.last_name }}
+                                        </a>
+                                    {% else %}
+                                        <a class="dropdown-item"
+                                           style="color: #4044EE; font-weight: bolder; font-size: 0.9rem;">@{{ user.username }}
+                                        </a>
+                                    {% endif %}
                                 </li>
                                 <hr class="dropdown-divider2">
-                                <li><a href="account-details.html" class="dropdown-item">Account Details</a></li>
+                                <li><a href="{% url 'account-details' %}" class="dropdown-item">Account Details</a></li>
                                 <li><a href="{% url 'password_change' %}" class="dropdown-item">Security</a></li>
                                 <li><a href="account-saved-items.html" class="dropdown-item">Saved Items</a></li>
-                                <li><a href="account-collections.html" class="dropdown-item">My Collections</a></li>
+                                {#                                <li><a href="account-collections.html" class="dropdown-item">My Collections</a></li>#}
                                 <li><a href="{% url 'logout' %}" class="dropdown-item link-danger">Log Out</a></li>
                                 <hr class="dropdown-divider2">
                                 <li class="dropdown-item">
@@ -87,14 +95,22 @@
                              alt="No"><span style="margin-left:10px;">@{{ user.username }}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu2">
-                        <li><a class="dropdown-item"
-                               style="color: #4044EE; font-weight: bolder; font-size: 0.9rem;">{{ user.first_name }} {{ user.last_name }}</a>
+                        <li>
+                            {% if user.first_name != '' %}
+                                <a class="dropdown-item"
+                                   style="color: #4044EE; font-weight: bolder; font-size: 0.9rem;">{{ user.first_name }} {{ user.last_name }}
+                                </a>
+                            {% else %}
+                                <a class="dropdown-item"
+                                   style="color: #4044EE; font-weight: bolder; font-size: 0.9rem;">@{{ user.username }}
+                                </a>
+                            {% endif %}
                         </li>
                         <hr class="dropdown-divider2">
-                        <li><a href="account-details.html" class="dropdown-item">Account Details</a></li>
+                        <li><a href="{% url 'account-details' %}" class="dropdown-item">Account Details</a></li>
                         <li><a href="{% url 'password_change' %}" class="dropdown-item">Security</a></li>
                         <li><a href="account-saved-items.html" class="dropdown-item">Saved Items</a></li>
-                        <li><a href="account-collections.html" class="dropdown-item">My Collections</a></li>
+                        {#                        <li><a href="account-collections.html" class="dropdown-item">My Collections</a></li>#}
                         <li><a href="{% url 'logout' %}" class="dropdown-item link-danger">Log Out</a></li>
                         <hr class="dropdown-divider2">
                         <li class="dropdown-item">
