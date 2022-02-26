@@ -1,0 +1,74 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Page content -->
+    <section class="container pb-5 mb-lg-4 mb-xl-5">
+        <!-- Breadcrumb -->
+        <nav class="pt-4 mt-lg-3" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'home' %}"><i class="bx bx-home-alt fs-lg me-1"></i>Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Contact</li>
+            </ol>
+        </nav>
+        <div class="row pt-4 mt-lg-3 pb-5 mb-lg-4 mb-xl-5">
+            <!-- Page title -->
+            <div class="col-md-4">
+                <h1 class="mb-md-4">Get in Touch</h1>
+                <p class="fs-lg pb-2">Have a project in mind? To request a quote contact us directly or fill out the
+                    form and let us know how we can help.</p>
+                <div class="d-flex">
+                    <a href="https://www.facebook.com/abdusamad.malikov.18/" class="btn btn-icon btn-outline-secondary btn-facebook mb-3 me-3" target="_blank">
+                        <i class="bx bxl-facebook"></i>
+                    </a>
+                    <a href="https://github.com/sevbo2003" class="btn btn-icon btn-outline-secondary btn-twitter mb-3 me-3" target="_blank">
+                        <i class="bx bxl-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/abdusamad-malikov/" class="btn btn-icon btn-outline-secondary btn-linkedin mb-3 me-3" target="_blank">
+                        <i class="bx bxl-linkedin"></i>
+                    </a>
+                    <a href="https://www.instagram.com/abdusamad_malikov/" class="btn btn-icon btn-outline-secondary btn-instagram mb-3 me-3" target="_blank">
+                        <i class="bx bxl-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Contact form -->
+            <form class="col-xl-7 col-md-8 offset-xl-1 needs-validation" action="{% url 'contact' %}"
+                  method="post">{% csrf_token %}
+                <div class="row">
+                    <div class="col-sm-6 mb-4">
+                        <label for="id_name" class="form-label fs-base">Name</label>
+                        <input type="text" name="name" id="id_name" class="form-control form-control-lg" placeholder="your name..." required>
+                        <div class="invalid-feedback">Please enter your name!</div>
+                    </div>
+                    <div class="col-sm-6 mb-4">
+                        <label for="id_email" class="form-label fs-base">Email</label>
+                        <input type="email" name="email" id="id_email" class="form-control form-control-lg" placeholder="your email..." required>
+                        <div class="invalid-feedback">Please provide a valid email address!</div>
+                    </div>
+                    <div class="col-sm-6 mb-4">
+                        <label for="id_phone" class="form-label fs-base">Phone</label>
+                        <input type="text" name="phone" id="id_phone" class="form-control form-control-lg" data-format="custom"
+                               data-delimiter="-" data-blocks="2 3 4" data-numeral="9" placeholder="00-000-0000">
+                    </div>
+                    <div class="col-sm-6 mb-4">
+                        <label for="id_subject" class="form-label fs-base">Subject</label>
+                        <input type="text" name="subject" id="id_subject" class="form-control form-control-lg" placeholder="Write subject of message..." required>
+                        <div class="invalid-feedback">Please choose the subject!</div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <label for="id_message" class="form-label fs-base">Message</label>
+                        <textarea id="id_message" name="message" class="form-control form-control-lg" rows="4" placeholder="Write your message" required></textarea>
+                        <div class="invalid-feedback">Please write your message!</div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg shadow-primary">Submit form</button>
+            </form>
+        </div>
+        <hr class="d-md-none mt-n2 mb-2">
+        <div class="row py-3">
+        </div>
+    </section>
+{% endblock %}

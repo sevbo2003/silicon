@@ -7,8 +7,8 @@ from accounts.forms import SubscriberForm
 from django.core.mail import send_mail
 from datetime import datetime
 from django.conf import settings
-from .forms import CommentForm
-from accounts.models import CustomUser
+from .forms import CommentForm, ContactForm
+from accounts.models import CustomUser, Contact
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse_lazy, reverse
@@ -21,6 +21,7 @@ def like_view(request, pk):
     post.likes.add(request.user)
     path = f"{post.get_absolute_url()}#share-post"
     return HttpResponseRedirect(path)
+
 
 @login_required
 def save_view(request, pk):
@@ -174,3 +175,20 @@ def account_details(request):
 def account_saves(request):
     posts = Post.objects.filter(savers=request.user)
     return render(request, 'account-saved-items.html', {'posts': posts})
+
+
+def contact(request):
+    if request.method == 'POST':
+        contact_form = ContactForm(request.POST)
+        if contact_form.is_valid():
+            name = contact_form.cleaned_data['name']
+            email = contact_form.cleaned_data['email']
+            phone = contact_form.cleaned_data['phone']
+            subject = contact_form.cleaned_data['subject']
+            message = contact_form.cleaned_data['message']
+            p = Contact(name=name, email=email, subject=subject, phone=phone, message=message, created_at=datetime)
+            p.save()
+            send_mail(subject, message, 'sevbofx@gmail.com', [email])
+    else:
+        contact_form = ContactForm()
+    return render(request, 'contact.html', {'contact_form': contact_form})

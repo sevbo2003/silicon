@@ -32,20 +32,19 @@
                         </h6>
                         <div id="useful-links" class="collapse d-lg-block" data-bs-parent="#footer-links">
                             <ul class="nav flex-column pb-lg-1 mb-lg-3">
-                                <li class="nav-item"><a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2">Home</a>
+                                <li class="nav-item"><a href="{% url 'home' %}"
+                                                        class="nav-link d-inline-block px-0 pt-1 pb-2">Home</a>
                                 </li>
                                 <li class="nav-item"><a href="#"
-                                                        class="nav-link d-inline-block px-0 pt-1 pb-2">Services</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2">Our
-                                    Works</a></li>
-                                <li class="nav-item"><a href="#"
                                                         class="nav-link d-inline-block px-0 pt-1 pb-2">About</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2">Blog</a>
+                                <li class="nav-item"><a href="{% url 'post_list' %}"
+                                                        class="nav-link d-inline-block px-0 pt-1 pb-2">Blog</a>
+                                </li>
+                                <li class="nav-item"><a href="{% url 'contact' %}"
+                                                        class="nav-link d-inline-block px-0 pt-1 pb-2">Contact</a>
                                 </li>
                             </ul>
                             <ul class="nav flex-column mb-2 mb-lg-0">
-                                <li class="nav-item"><a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2">Terms
-                                    &amp; Conditions</a></li>
                                 <li class="nav-item"><a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2">Privacy
                                     Policy</a></li>
                             </ul>
@@ -58,20 +57,24 @@
                         </h6>
                         <div id="social-links" class="collapse d-lg-block" data-bs-parent="#footer-links">
                             <ul class="nav flex-column mb-2 mb-lg-0">
-                                <li class="nav-item"><a href="#"
-                                                        class="nav-link d-inline-block px-0 pt-1 pb-2">Facebook</a></li>
-                                <li class="nav-item"><a href="#"
-                                                        class="nav-link d-inline-block px-0 pt-1 pb-2">LinkedIn</a></li>
-                                <li class="nav-item"><a href="#"
-                                                        class="nav-link d-inline-block px-0 pt-1 pb-2">Github</a></li>
-                                <li class="nav-item"><a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2">Instagram</a>
+                                <li class="nav-item"><a href="https://www.facebook.com/abdusamad.malikov.18/"
+                                                        class="nav-link d-inline-block px-0 pt-1 pb-2" target="_blank">Facebook</a>
+                                </li>
+                                <li class="nav-item"><a href="https://www.linkedin.com/in/abdusamad-malikov/"
+                                                        class="nav-link d-inline-block px-0 pt-1 pb-2" target="_blank">LinkedIn</a>
+                                </li>
+                                <li class="nav-item"><a href="https://github.com/sevbo2003"
+                                                        class="nav-link d-inline-block px-0 pt-1 pb-2" target="_blank">Github</a>
+                                </li>
+                                <li class="nav-item"><a href="https://www.instagram.com/abdusamad_malikov/"
+                                                        class="nav-link d-inline-block px-0 pt-1 pb-2" target="_blank">Instagram</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-5 pt-2 pt-lg-0">
                         <h6 class="mb-2">Contact Me</h6>
-                        <a href="mailto:email@example.com" class="fw-medium">sevbofx@gmail.com</a>
+                        <a href="mailto:sevbofx@gmail.com" class="fw-medium">sevbofx@gmail.com</a>
                     </div>
                 </div>
             </div>
