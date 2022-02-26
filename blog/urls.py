@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import homepage, post_detail, post_list, account_details, like_view, category_posts, account_saves, \
-    save_view
+    save_view, save_remove_view
 
 urlpatterns = [
     path('', homepage, name='home'),
@@ -10,5 +10,6 @@ urlpatterns = [
     path('accounts/saves/', account_saves, name='account_saves'),
     path('like/<int:pk>/', like_view, name='like_post'),
     path('save/<int:pk>/', save_view, name='save_post'),
+    path('remove/<int:pk>/', save_remove_view, name='remove_post'),
     path('category/<str:category>/', category_posts, name='category_posts'),
 ]

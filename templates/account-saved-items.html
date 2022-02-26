@@ -65,15 +65,16 @@
                             <div class="col pb-lg-2 mb-4">
                                 <article class="card border-0 h-100 mx-1 shadow-sm">
                                     <div class="position-relative">
-                                        <a href="{{ post.get_absolute_url }}"
-                                           class="position-absolute top-0 start-0 w-100 h-100"
-                                           aria-label="Read more"></a>
-                                        <a href="{{ post.get_absolute_url }}"
-                                           class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-2 me-3 mt-3"
-                                           data-bs-toggle="tooltip" data-bs-placement="left" title=""
-                                           data-bs-original-title="Remove">
-                                            <i class="bx bxs-bookmark"></i>
-                                        </a>
+                                       <form action="{% url 'remove_post' post.pk %}" method="post">{% csrf_token %}
+                                <a class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
+                                   data-bs-toggle="tooltip" data-bs-placement="left"
+                                   title="Remove">
+                                    <button mt-0 type="submit" class="btn btn-link" value="{{ post.id }}"
+                                            name="post_id">
+                                        <i class="bx bxs-bookmark" style="color: black; font-size: 25px"></i>
+                                    </button>
+                                </a>
+                            </form>
                                         <img src="{{ post.thumbnail.url }}" class="card-img-top" alt="Image">
                                     </div>
                                     <div class="card-body pb-4">

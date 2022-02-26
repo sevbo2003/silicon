@@ -22,11 +22,19 @@ def like_view(request, pk):
     path = f"{post.get_absolute_url()}#share-post"
     return HttpResponseRedirect(path)
 
-
+@login_required
 def save_view(request, pk):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
     post.savers.add(request.user)
     return HttpResponseRedirect(reverse('account_saves'))
+
+
+@login_required
+def save_remove_view(request, pk):
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    post.savers.remove(request.user)
+    return HttpResponseRedirect(reverse('account_saves'))
+
 
 def homepage(request):
     hot = Post.objects.filter(hot_post=True)[0]
