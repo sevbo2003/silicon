@@ -27,11 +27,16 @@
                                 <div class="d-flex justify-content-between mb-3">
                                     <a href="#"
                                        class="badge fs-sm text-white bg-warning shadow-warning text-decoration-none">{{ post.category }}</a>
-                                    <a href="#"
-                                       class="btn btn-icon btn-secondary btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
-                                       data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
-                                        <i class="bx bx-bookmark"></i>
-                                    </a>
+                                    <form action="{% url 'save_post' post.pk %}" method="post">{% csrf_token %}
+                                        <a class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
+                                           data-bs-toggle="tooltip" data-bs-placement="left"
+                                           title="Read later">
+                                            <button mt-0 type="submit" class="btn btn-link" value="{{ post.id }}"
+                                                    name="post_id">
+                                                <i class="bx bx-bookmark" style="color: black"></i>
+                                            </button>
+                                        </a>
+                                    </form>
                                 </div>
                                 <h3 class="h4">
                                     <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
@@ -57,13 +62,16 @@
                             <div class="row g-0">
                                 <div class="col-sm-5 position-relative bg-position-center bg-repeat-0 bg-size-cover rounded-3"
                                      style="background-image: url({{ post.thumbnail.url }}); min-height: 15rem;">
-                                    <a href="{{ post.get_absolute_url }}" class="position-absolute top-0 start-0 w-100 h-100"
-                                       aria-label="Read more"></a>
-                                    <a href="#"
-                                       class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
-                                       data-bs-toggle="tooltip" data-bs-placement="left" title="Read later">
-                                        <i class="bx bx-bookmark"></i>
-                                    </a>
+                                    <form action="{% url 'save_post' post.pk %}" method="post">{% csrf_token %}
+                                        <a class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
+                                           data-bs-toggle="tooltip" data-bs-placement="left"
+                                           title="Read later">
+                                            <button mt-0 type="submit" class="btn btn-link" value="{{ post.id }}"
+                                                    name="post_id">
+                                                <i class="bx bx-bookmark" style="color: black"></i>
+                                            </button>
+                                        </a>
+                                    </form>
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="card-body px-0 pt-sm-0 ps-sm-4 pb-0 pb-sm-4">
@@ -93,49 +101,46 @@
                     <!-- Item -->
                 {% endfor %}
                 <!-- Paginator-->
-                {% if posts.has_other_pages %}
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center pt-lg-3 pt-1">
-                            <li class="page-item">
-                                {% if posts.has_previous %}
-                                    <a href="?page={{ posts.previous_page_number }}" class="page-link">
-                                        <i class="bx bx-chevron-left mx-n1"></i>
-                                    </a>
-                                {% else %}
-                                    <a class="page-link">
-                                        <i class="bx bx-chevron-left mx-n1"></i>
-                                    </a>
-                                {% endif %}
-                            </li>
-                            {% for i in posts.paginator.page_range %}
-                                {% if posts.number == i %}
-                                    <li class="page-item active d-none d-sm-block" aria-current="page">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center pt-lg-3 pt-1">
+                        <li class="page-item">
+                            {% if posts.has_previous %}
+                                <a href="?page={{ posts.previous_page_number }}" class="page-link">
+                                    <i class="bx bx-chevron-left mx-n1"></i>
+                                </a>
+                            {% else %}
+                                <a class="page-link">
+                                    <i class="bx bx-chevron-left mx-n1"></i>
+                                </a>
+                            {% endif %}
+                        </li>
+                        {% for i in posts.paginator.page_range %}
+                            {% if posts.number == i %}
+                                <li class="page-item active d-none d-sm-block" aria-current="page">
                                         <span class="page-link">{{ i }}<span
                                                 class="visually-hidden">(current)</span></span>
-                                    </li>
-                                {% else %}
-                                    <li class="page-item d-none d-sm-block">
-                                        <a href="?page={{ i }}" class="page-link">{{ i }}</a>
-                                    </li>
-                                {% endif %}
-                            {% endfor %}
-                            {% if posts.has_next %}
-                                <li class="page-item">
-                                    <a href="?page={{ posts.next_page_number }}" class="page-link">
-                                        <i class="bx bx-chevron-right mx-n1"></i>
-                                    </a>
                                 </li>
                             {% else %}
-                                <li class="page-item">
-                                    <a class="page-link">
-                                        <i class="bx bx-chevron-right mx-n1"></i>
-                                    </a>
+                                <li class="page-item d-none d-sm-block">
+                                    <a href="?page={{ i }}" class="page-link">{{ i }}</a>
                                 </li>
                             {% endif %}
-                        </ul>
-                    </nav>
-                {% endif %}
-
+                        {% endfor %}
+                        {% if posts.has_next %}
+                            <li class="page-item">
+                                <a href="?page={{ posts.next_page_number }}" class="page-link">
+                                    <i class="bx bx-chevron-right mx-n1"></i>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item">
+                                <a class="page-link">
+                                    <i class="bx bx-chevron-right mx-n1"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
             </div>
             <!-- Sidebar (Offcanvas below lg breakpoint) -->
             <aside class="col-xl-3 col-lg-4">
@@ -158,8 +163,8 @@
                             <h3 class="h5">Categories</h3>
                             <ul class="nav flex-column fs-sm">
                                 <li class="nav-item mb-1">
-                                    <a class="nav-link py-1 px-0 active">All topics <span
-                                            class="fw-normal opacity-60 ms-1">({{ numbers }})</span></a>
+                                    <a href="#" class="nav-link py-1 px-0 active">All topics <span
+                                            class="fw-normal opacity-60 ms-1">({{ posts.count }})</span></a>
                                 </li>
                                 {% for cat in categories %}
                                     <li class="nav-item mb-1">
@@ -167,8 +172,6 @@
                                                 class="fw-normal opacity-60 ms-1">({{ cat.post_set.all.count }})</span></a>
                                     </li>
                                 {% endfor %}
-
-
                             </ul>
                         </div>
                         <!-- Popular posts -->
@@ -305,7 +308,8 @@
                         </div>
                     </div>
                     <!-- Email field -->
-                    <form class="d-flex flex-sm-row flex-column mb-3 needs-validation" method="post" action="{% url 'home' %}">
+                    <form class="d-flex flex-sm-row flex-column mb-3 needs-validation" method="post"
+                          action="{% url 'home' %}">
                         {% csrf_token %}
                         <div class="input-group me-sm-3 mb-sm-0 mb-3">
                             <i class="bx bx-envelope position-absolute start-0 top-50 translate-middle-y ms-3 zindex-5 fs-5 text-muted"></i>
