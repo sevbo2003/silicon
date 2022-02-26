@@ -148,13 +148,15 @@
                             <article class="card border-0 h-100 mx-1">
                                 <div class="position-relative">
                                     <form action="{% url 'save_post' post.pk %}" method="post">{% csrf_token %}
-                                        <button type="submit" class="btn btn-link" value="{{ post.id }}" name="post_id">
-                                            <a class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
-                                               data-bs-toggle="tooltip" data-bs-placement="left"
-                                               title="Read later">
+
+                                        <a class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
+                                           data-bs-toggle="tooltip" data-bs-placement="left"
+                                           title="Read later">
+                                            <button mt-0 type="submit" class="btn btn-link" value="{{ post.id }}"
+                                                    name="post_id">
                                                 <i class="bx bx-bookmark"></i>
-                                            </a>
-                                        </button>
+                                            </button>
+                                        </a>
                                     </form>
                                     <img src="{{ post.thumbnail.url }}" class="card-img-top" alt="Image">
                                 </div>
