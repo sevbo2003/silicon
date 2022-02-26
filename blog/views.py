@@ -72,11 +72,13 @@ def post_list(request):
         posts = paginator.page(1)
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
+    numbers = Post.objects.all().count()
     context = {
         'posts': posts,
         'top_posts': top_posts,
         'categories': categories,
         'tags': tags,
+        'numbers': numbers
     }
     return render(request, 'post_list.html', context)
 
@@ -111,6 +113,39 @@ def post_detail(request, slug):
         'comments': comments
     }
     return render(request, 'post_detail.html', context)
+
+
+def category_posts(request, category):
+    category = get_object_or_404(Category, category=category)
+    categories = Category.objects.all()
+    tags = Tags.objects.all()[:6]
+    top_posts = Post.objects.annotate(num=Count('likes')).order_by('-num')[:3]
+    query = request.GET.get('search')
+    if query:
+        posts = Post.objects.filter(category=category).filter(Q(title__icontains=query) | Q(description__icontains=query))
+    else:
+        posts = Post.objects.filter(category=category)
+    page_num = request.GET.get('page', 1)
+    paginator = Paginator(posts, 6)
+    try:
+        posts = paginator.page(page_num)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    numbers = Post.objects.all().count()
+    page_cat = str(category.category)
+    print(page_cat)
+    context = {
+        'cat_post': category,
+        'posts': posts,
+        'top_posts': top_posts,
+        'categories': categories,
+        'tags': tags,
+        'numbers': numbers,
+        'page_cat': page_cat
+    }
+    return render(request, 'category_posts.html', context)
 
 
 

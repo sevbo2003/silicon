@@ -196,7 +196,7 @@
             </li>
             {% for category in categories %}
                 <li class="nav-item">
-                    <a href="#" class="nav-link">{{ category }}</a>
+                    <a href="{% url 'category_posts' category.category %}" class="nav-link">{{ category }}</a>
                 </li>
             {% endfor %}
 

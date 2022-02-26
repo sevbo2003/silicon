@@ -7,14 +7,14 @@
             <li class="breadcrumb-item">
                 <a href="{% url 'home' %}"><i class="bx bx-home-alt fs-lg me-1"></i>Home</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Blog List with Sidebar</li>
+            <li class="breadcrumb-item active" aria-current="page">Category posts</li>
         </ol>
     </nav>
     <!-- Page content -->
     <section class="container mt-4 mb-2 mb-md-4 mb-lg-5 pt-lg-2 pb-5">
         <!-- Page title + Layout switcher -->
         <div class="d-flex align-items-center justify-content-between mb-4 pb-1 pb-md-3">
-            <h1 class="mb-0">All posts</h1>
+            <h1 class="mb-0">Category: <span style="color: #4044EE;">{{ cat_post }}</span></h1>
         </div>
         <!-- Blog list + Sidebar -->
         <div class="row">
@@ -57,7 +57,8 @@
                             <div class="row g-0">
                                 <div class="col-sm-5 position-relative bg-position-center bg-repeat-0 bg-size-cover rounded-3"
                                      style="background-image: url({{ post.thumbnail.url }}); min-height: 15rem;">
-                                    <a href="{{ post.get_absolute_url }}" class="position-absolute top-0 start-0 w-100 h-100"
+                                    <a href="{{ post.get_absolute_url }}"
+                                       class="position-absolute top-0 start-0 w-100 h-100"
                                        aria-label="Read more"></a>
                                     <a href="#"
                                        class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
@@ -93,48 +94,48 @@
                     <!-- Item -->
                 {% endfor %}
                 <!-- Paginator-->
-                {% if posts.has_other_pages %}
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center pt-lg-3 pt-1">
-                            <li class="page-item">
-                                {% if posts.has_previous %}
-                                    <a href="?page={{ posts.previous_page_number }}" class="page-link">
-                                        <i class="bx bx-chevron-left mx-n1"></i>
-                                    </a>
-                                {% else %}
-                                    <a class="page-link">
-                                        <i class="bx bx-chevron-left mx-n1"></i>
-                                    </a>
-                                {% endif %}
-                            </li>
-                            {% for i in posts.paginator.page_range %}
-                                {% if posts.number == i %}
-                                    <li class="page-item active d-none d-sm-block" aria-current="page">
+                {#                {% if posts.has_other_pages %}#}
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center pt-lg-3 pt-1">
+                        <li class="page-item">
+                            {% if posts.has_previous %}
+                                <a href="?page={{ posts.previous_page_number }}" class="page-link">
+                                    <i class="bx bx-chevron-left mx-n1"></i>
+                                </a>
+                            {% else %}
+                                <a class="page-link">
+                                    <i class="bx bx-chevron-left mx-n1"></i>
+                                </a>
+                            {% endif %}
+                        </li>
+                        {% for i in posts.paginator.page_range %}
+                            {% if posts.number == i %}
+                                <li class="page-item active d-none d-sm-block" aria-current="page">
                                         <span class="page-link">{{ i }}<span
                                                 class="visually-hidden">(current)</span></span>
-                                    </li>
-                                {% else %}
-                                    <li class="page-item d-none d-sm-block">
-                                        <a href="?page={{ i }}" class="page-link">{{ i }}</a>
-                                    </li>
-                                {% endif %}
-                            {% endfor %}
-                            {% if posts.has_next %}
-                                <li class="page-item">
-                                    <a href="?page={{ posts.next_page_number }}" class="page-link">
-                                        <i class="bx bx-chevron-right mx-n1"></i>
-                                    </a>
                                 </li>
                             {% else %}
-                                <li class="page-item">
-                                    <a class="page-link">
-                                        <i class="bx bx-chevron-right mx-n1"></i>
-                                    </a>
+                                <li class="page-item d-none d-sm-block">
+                                    <a href="?page={{ i }}" class="page-link">{{ i }}</a>
                                 </li>
                             {% endif %}
-                        </ul>
-                    </nav>
-                {% endif %}
+                        {% endfor %}
+                        {% if posts.has_next %}
+                            <li class="page-item">
+                                <a href="?page={{ posts.next_page_number }}" class="page-link">
+                                    <i class="bx bx-chevron-right mx-n1"></i>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item">
+                                <a class="page-link">
+                                    <i class="bx bx-chevron-right mx-n1"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                {#                {% endif %}#}
 
             </div>
             <!-- Sidebar (Offcanvas below lg breakpoint) -->
@@ -158,13 +159,21 @@
                             <h3 class="h5">Categories</h3>
                             <ul class="nav flex-column fs-sm">
                                 <li class="nav-item mb-1">
-                                    <a class="nav-link py-1 px-0 active">All topics <span
+                                    <a href="{% url 'post_list' %}" class="nav-link py-1 px-0">All topics <span
                                             class="fw-normal opacity-60 ms-1">({{ numbers }})</span></a>
                                 </li>
                                 {% for cat in categories %}
                                     <li class="nav-item mb-1">
-                                        <a href="{% url 'category_posts' cat.category %}" class="nav-link py-1 px-0">{{ cat|capfirst }} <span
-                                                class="fw-normal opacity-60 ms-1">({{ cat.post_set.all.count }})</span></a>
+                                        {% if cat.category == page_cat %}
+                                            <a href="{% url 'category_posts' cat.category %}"
+                                               class="nav-link py-1 px-0 active">{{ cat|capfirst }} <span
+                                                    class="fw-normal opacity-60 ms-1">({{ cat.post_set.all.count }})</span></a>
+                                        {% else %}
+                                            <a href="{% url 'category_posts' cat.category %}"
+                                               class="nav-link py-1 px-0">{{ cat|capfirst }} <span
+                                                    class="fw-normal opacity-60 ms-1">({{ cat.post_set.all.count }})</span></a>
+                                        {% endif %}
+
                                     </li>
                                 {% endfor %}
 
@@ -305,7 +314,8 @@
                         </div>
                     </div>
                     <!-- Email field -->
-                    <form class="d-flex flex-sm-row flex-column mb-3 needs-validation" method="post" action="{% url 'home' %}">
+                    <form class="d-flex flex-sm-row flex-column mb-3 needs-validation" method="post"
+                          action="{% url 'home' %}">
                         {% csrf_token %}
                         <div class="input-group me-sm-3 mb-sm-0 mb-3">
                             <i class="bx bx-envelope position-absolute start-0 top-50 translate-middle-y ms-3 zindex-5 fs-5 text-muted"></i>
