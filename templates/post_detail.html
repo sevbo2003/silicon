@@ -59,9 +59,8 @@
                 {{ post.body|safe }}
             </div>
             <!-- Sharing -->
-            <div class="col-lg-3 position-relative">
+            <div class="col-lg-3 position-relative" id="share-post">
                 <div class="sticky-top ms-xl-5 ms-lg-4 ps-xxl-4" style="top: 105px !important;">
-                    <span class="d-block mb-3">5 min read</span>
                     <h6>Share this post:</h6>
                     <div class="mb-4 pb-lg-3">
                         <a href="#" class="btn btn-icon btn-secondary btn-linkedin me-2 mb-2">
@@ -77,11 +76,13 @@
                             <i class="bx bxl-instagram"></i>
                         </a>
                     </div>
-                    <button class="btn btn-lg btn-outline-secondary">
-                        <i class="bx bx-like me-2 lead"></i>
-                        Like it
-                        <span class="badge bg-primary shadow-primary mt-n1 ms-3">8</span>
-                    </button>
+                    <form action="{% url 'like_post' post.pk %}" method="post">{% csrf_token %}
+                        <button class="btn btn-lg btn-outline-secondary" type="submit" value="{{ post.id }}" name="post_id">
+                            <i class="bx bx-like me-2 lead"></i>
+                            Like it
+                            <span class="badge bg-primary shadow-primary mt-n1 ms-3">{{ post.likes.all.count }}</span>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -209,11 +210,12 @@
                                 <a href="#" class="btn btn-icon btn-secondary btn-linkedin me-2 mb-2">
                                     <i class="bx bxl-linkedin"></i>
                                 </a>
-                                <a href="#" class="btn btn-icon btn-secondary btn-facebook me-2 mb-2">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=https:/malikov.co{{ request.path }}"
+                                   class="btn btn-icon btn-secondary btn-facebook me-2 mb-2">
                                     <i class="bx bxl-facebook"></i>
                                 </a>
                                 <a href="#" class="btn btn-icon btn-secondary btn-twitter me-2 mb-2">
-                                    <i class="bx bxl-github"></i>
+                                    <i class="bx bxl-messenger"></i>
                                 </a>
                                 <a href="#" class="btn btn-icon btn-secondary btn-instagram me-2 mb-2">
                                     <i class="bx bxl-instagram"></i>
@@ -229,7 +231,7 @@
     <section class="container mb-5 pt-md-4">
         <div class="d-flex flex-sm-row flex-column align-items-center justify-content-between mb-4 pb-1 pb-md-3">
             <h2 class="h1 mb-sm-0">Related Articles</h2>
-            <a href="post_list.html" class="btn btn-lg btn-outline-primary ms-4">
+            <a href="{% url 'post_list' %}" class="btn btn-lg btn-outline-primary ms-4">
                 All posts
                 <i class="bx bx-right-arrow-alt ms-1 me-n1 lh-1 lead"></i>
             </a>

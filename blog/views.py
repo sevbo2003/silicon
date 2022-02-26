@@ -11,7 +11,14 @@ from .forms import CommentForm
 from accounts.models import CustomUser
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.views.decorators.csrf import csrf_exempt
+from django.urls import reverse_lazy, reverse
 
+
+def like_view(request, pk):
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    post.likes.add(request.user)
+    path = f"{post.get_absolute_url()}#share-post"
+    return HttpResponseRedirect(path)
 
 def homepage(request):
     hot = Post.objects.filter(hot_post=True)[0]
@@ -76,7 +83,7 @@ def post_list(request):
 
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
-    releated_arts = Post.objects.filter(category=post.category)[:3].exclude(post=post)
+    releated_arts = Post.objects.filter(category=post.category)[:3]
     # print(request.user.first_name == '')
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)

@@ -29,6 +29,9 @@
     <!-- Main Theme Styles + Bootstrap -->
     <link rel="stylesheet" media="screen" href="{% static 'css/theme.min.css' %}">
     <!-- Page loading styles -->
+    {% block style %}
+
+    {% endblock %}
     <style>
         .page-loading {
             position: fixed;
@@ -197,5 +200,8 @@
 <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
 <!-- Main Theme Script -->
 <script src="{% static 'js/theme.min.js' %}"></script>
+{% block script %}
+
+{% endblock %}
 </body>
 </html>
