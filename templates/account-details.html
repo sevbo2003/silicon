@@ -57,20 +57,31 @@
                     <h2 class="h5 text-primary mb-4">Basic info</h2>
                     <form class="needs-validation border-bottom pb-3 pb-lg-4">
                         <div class="row pb-2">
-                            <div class="col-sm-6 mb-4">
-                                <label for="fn" class="form-label fs-base">First name</label>
-                                <input type="text" id="fn" class="form-control form-control-lg" value="John" required>
-                                <div class="invalid-feedback">Please enter your first name!</div>
-                            </div>
-                            <div class="col-sm-6 mb-4">
-                                <label for="sn" class="form-label fs-base">Second name</label>
-                                <input type="text" id="sn" class="form-control form-control-lg" value="Doe" required>
-                                <div class="invalid-feedback">Please enter your second name!</div>
-                            </div>
+                            {% if user.first_name != '' %}
+                                <div class="col-sm-6 mb-4">
+                                    <label for="fn" class="form-label fs-base">First name</label>
+                                    <input type="text" id="fn" class="form-control form-control-lg" value="{{ user.first_name }}" disabled>
+                                </div>
+                                <div class="col-sm-6 mb-4">
+                                    <label for="sn" class="form-label fs-base">Last name</label>
+                                    <input type="text" id="sn" class="form-control form-control-lg" value="{{ user.last_name }}" disabled>
+                                </div>
+                            {% else %}
+                                <div class="col-sm-6 mb-4">
+                                    <label for="fn" class="form-label fs-base">First name</label>
+                                    <input type="text" id="fn" class="form-control form-control-lg" placeholder="e.g Abdusamad" required>
+                                    <div class="invalid-feedback">Please enter your first name!</div>
+                                </div>
+                                <div class="col-sm-6 mb-4">
+                                    <label for="sn" class="form-label fs-base">Last name</label>
+                                    <input type="text" id="sn" class="form-control form-control-lg" placeholder="e.g Malikov" required>
+                                    <div class="invalid-feedback">Please enter your last name!</div>
+                                </div>
+                            {% endif %}
                             <div class="col-sm-6 mb-4">
                                 <label for="email" class="form-label fs-base">Email address</label>
                                 <input type="email" id="email" class="form-control form-control-lg"
-                                       value="jonny@email.com" required>
+                                       value="jonny@email.com" disabled>
                                 <div class="invalid-feedback">Please provide a valid email address!</div>
                             </div>
                             <div class="col-sm-6 mb-4">
@@ -78,7 +89,7 @@
                                         class="text-muted">(optional)</small></label>
                                 <input type="text" id="phone" class="form-control form-control-lg" data-format="custom"
                                        data-delimiter="-" data-blocks="2 3 4" data-numeral="9"
-                                       placeholder="00-000-0000">
+                                       placeholder="+99800-000-00-00">
                             </div>
                             <div class="col-12 mb-4">
                                 <label for="bio" class="form-label fs-base">Bio <small
@@ -107,6 +118,5 @@
             </div>
         </div>
     </section>
-    </main>
     <!-- Footer -->
 {% endblock %}
