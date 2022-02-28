@@ -1,9 +1,11 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block title %}Page not found{% endblock %}
+{% block header %}
+{% endblock %}
 {% block content %}
-            <!-- BG light version -->
-            <div class="d-dark-mode-none position-absolute top-0 start-0 w-100 h-100 bg-repeat-0 bg-position-center bg-size-cover" style="background-image: url({% static 'img/404/light/bg.jpg' %});"></div>
+{#            <!-- BG light version -->#}
+{#            <div class="d-none d-dark-mode-block position-absolute top-0 start-0 w-100 h-100 bg-repeat-0 bg-position-center bg-size-cover" style="background-image: url({% static 'img/404/light/bg.jpg' %});"></div>#}
             <!-- BG dark version -->
             <div class="d-none d-dark-mode-block position-absolute top-0 start-0 w-100 h-100 bg-repeat-0 bg-position-center bg-size-cover" style="background-image: url({% static 'img/404/dark/bg.jpg' %});"></div>
             <!-- Page content -->
@@ -14,7 +16,7 @@
                         <div class="parallax-layer" data-depth="-0.15">
                             <img src="{% static 'img/404/light/layer01.png' %}" alt="Layer">
                         </div>
-                        <div class="parallax-layer" data-depth="0.12">
+                        <div class="parallax-layer">
                             <img src="{% static 'img/404/light/layer02.png' %}" alt="Layer">
                         </div>
                         <div class="parallax-layer zindex-5" data-depth="-0.12">
@@ -24,19 +26,19 @@
                     <!-- Parallax gfx (Dark version) -->
                     <div class="parallax mx-auto d-dark-mode-block" style="max-width: 574px;">
                         <div class="parallax-layer" data-depth="-0.15">
-                            <img src="{% static 'img/404/dark/layer01.png' %}" alt="Layer">
+                            <img src="{% static 'img/404/dark/layer01.png' %}" alt="No">
                         </div>
                         <div class="parallax-layer" data-depth="0.12">
-                            <img src="{% static 'img/404/dark/layer02.png' %}" alt="Layer">
+                            <img src="{% static 'img/404/dark/layer02.png' %}" alt="No">
                         </div>
                         <div class="parallax-layer zindex-5" data-depth="-0.12">
-                            <img src="{% static 'img/404/dark/layer03.png' %}" alt="Layer">
+                            <img src="{% static 'img/404/dark/layer03.png' %}" alt="No">
                         </div>
                     </div>
                     <h1 class="visually-hidden">404</h1>
                     <h2 class="display-5">Ooops!</h2>
                     <p class="fs-xl pb-3 pb-md-0 mb-md-5">The page you are looking for is not available.</p>
-                    <a href="index.html" class="btn btn-lg btn-primary shadow-primary w-sm-auto w-100">
+                    <a href="{% url 'home' %}" class="btn btn-lg btn-primary shadow-primary w-sm-auto w-100">
                     <i class="bx bx-home-alt me-2 ms-n1 lead"></i>
                     Go to homepage
                     </a>
@@ -48,4 +50,6 @@
                     </p>
                 </div>
             </section>
+    {% block footer %}
+    {% endblock %}
 {% endblock %}
