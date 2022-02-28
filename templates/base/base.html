@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Malikov | Blog Homepage</title>
+    <title>Malikov | {% block title %}Blog Homepage{% endblock %}</title>
     <!-- SEO Meta Tags -->
     <meta name="description" content="Malikov-Python Backend Developer Blogs">
     <meta name="keywords"
@@ -141,30 +141,10 @@
             };
         })();
     </script>
-    <!-- Google Tag Manager -->
-    {#    <script>#}
-    {#        (function (w, d, s, l, i) {#}
-    {#            w[l] = w[l] || [];#}
-    {#            w[l].push({#}
-    {#                'gtm.start':#}
-    {#                    new Date().getTime(), event: 'gtm.js'#}
-    {#            });#}
-    {#            var f = d.getElementsByTagName(s)[0],#}
-    {#                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';#}
-    {#            j.async = true;#}
-    {#            j.src =#}
-    {#                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;#}
-    {#            f.parentNode.insertBefore(j, f);#}
-    {#        })(window, document, 'script', 'dataLayer', 'GTM-WKV3GT5');#}
-    {#    </script>#}
 </head>
 <!-- Body -->
 <body>
 <!-- Google Tag Manager (noscript)-->
-<noscript>
-    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-WKV3GT5" height="0" width="0"
-            style="display: none; visibility: hidden;"></iframe>
-</noscript>
 <!-- Page loading spinner -->
 <div class="page-loading active">
     <div class="page-loading-inner">
