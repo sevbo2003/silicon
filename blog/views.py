@@ -115,6 +115,7 @@ def post_detail(request, slug):
             return HttpResponseRedirect(path)
     else:
         comment_form = CommentForm()
+    print(request.session.session_key)
     comments = post.comments.all()
     page_num = request.GET.get('page', 1)
     paginator = Paginator(comments, 8)
@@ -165,11 +166,6 @@ def category_posts(request, category):
         'page_cat': page_cat
     }
     return render(request, 'category_posts.html', context)
-
-
-# Accaunt Details
-def account_details(request):
-    return render(request, 'account-details.html')
 
 
 def account_saves(request):

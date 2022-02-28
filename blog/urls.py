@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import homepage, post_detail, post_list, account_details, like_view, category_posts, account_saves, \
+from .views import homepage, post_detail, post_list, like_view, category_posts, account_saves, \
     save_view, save_remove_view, contact
-
+from accounts.views import account_details
 urlpatterns = [
     path('', homepage, name='home'),
     path('post-list/', post_list, name='post_list'),

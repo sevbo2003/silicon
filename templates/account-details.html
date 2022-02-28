@@ -55,26 +55,31 @@
                     <h1 class="h2 pt-xl-1 pb-3">Account Details</h1>
                     <!-- Basic info -->
                     <h2 class="h5 text-primary mb-4">Basic info</h2>
-                    <form class="needs-validation border-bottom pb-3 pb-lg-4">
+                    <form class="needs-validation border-bottom pb-3 pb-lg-4" method="post"
+                          action="{% url 'account-details' %}">{% csrf_token %}
                         <div class="row pb-2">
                             {% if user.first_name != '' %}
                                 <div class="col-sm-6 mb-4">
                                     <label for="fn" class="form-label fs-base">First name</label>
-                                    <input type="text" id="fn" class="form-control form-control-lg" value="{{ user.first_name }}" disabled>
+                                    <input type="text" id="fn" class="form-control form-control-lg"
+                                           value="{{ user.first_name }}" disabled>
                                 </div>
                                 <div class="col-sm-6 mb-4">
                                     <label for="sn" class="form-label fs-base">Last name</label>
-                                    <input type="text" id="sn" class="form-control form-control-lg" value="{{ user.last_name }}" disabled>
+                                    <input type="text" id="sn" class="form-control form-control-lg"
+                                           value="{{ user.last_name }}" disabled>
                                 </div>
                             {% else %}
                                 <div class="col-sm-6 mb-4">
-                                    <label for="fn" class="form-label fs-base">First name</label>
-                                    <input type="text" id="fn" class="form-control form-control-lg" placeholder="e.g Abdusamad" required>
+                                    <label for="id_first_name" class="form-label fs-base">First name</label>
+                                    <input type="text" id="id_first_name" name='first_name'
+                                           class="form-control form-control-lg" placeholder="e.g Abdusamad">
                                     <div class="invalid-feedback">Please enter your first name!</div>
                                 </div>
                                 <div class="col-sm-6 mb-4">
-                                    <label for="sn" class="form-label fs-base">Last name</label>
-                                    <input type="text" id="sn" class="form-control form-control-lg" placeholder="e.g Malikov" required>
+                                    <label for="id_last_name" class="form-label fs-base">Last name</label>
+                                    <input type="text" id="id_last_name" name="last_name"
+                                           class="form-control form-control-lg" placeholder="e.g Malikov">
                                     <div class="invalid-feedback">Please enter your last name!</div>
                                 </div>
                             {% endif %}
@@ -85,35 +90,43 @@
                                 <div class="invalid-feedback">Please provide a valid email address!</div>
                             </div>
                             <div class="col-sm-6 mb-4">
-                                <label for="phone" class="form-label fs-base">Phone <small
+                                <label for="id_phone" class="form-label fs-base">Phone <small
                                         class="text-muted">(optional)</small></label>
-                                <input type="text" id="phone" class="form-control form-control-lg" data-format="custom"
-                                       data-delimiter="-" data-blocks="2 3 4" data-numeral="9"
-                                       placeholder="+99800-000-00-00">
+                                {% if user.phone != '' %}
+                                    <input type="text" id="id_phone" name="phone" class="form-control form-control-lg"
+                                           data-format="custom"
+                                           data-delimiter="-" data-blocks="2 3 4" data-numeral="9"
+                                           value="{{ user.phone }}" disabled>
+                                {% else %}
+                                    <input type="text" id="id_phone" name="phone" class="form-control form-control-lg"
+                                           data-format="custom"
+                                           data-delimiter="-" data-blocks="2 3 4" data-numeral="9"
+                                           placeholder="+99800-000-00-00">
+                                {% endif %}
+
                             </div>
                             <div class="col-12 mb-4">
-                                <label for="bio" class="form-label fs-base">Bio <small
+                                <label for="id_bio" class="form-label fs-base">Bio <small
                                         class="text-muted">(optional)</small></label>
-                                <textarea id="bio" class="form-control form-control-lg" rows="4"
-                                          placeholder="Add a short bio..."></textarea>
+                                {% if user.bio == '' %}
+                                    <textarea type="text" id="id_bio" name="bio" class="form-control form-control-lg"
+                                              rows="4"
+                                              placeholder="Write little about you. Do not forget you can not update your bio next time"></textarea>
+                                {% else %}
+                                    <textarea type="text" id="id_bio" name="bio" class="form-control form-control-lg"
+                                              rows="4"
+                                              placeholder="{{ user.bio }}" disabled></textarea>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="d-flex mb-3">
-                            <button type="reset" class="btn btn-secondary me-3">Cancel</button>
+                            <button type="reset" class="btn btn-secondary me-3" href="{% url 'account-details' %}">
+                                Cancel
+                            </button>
                             <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
                     </form>
                     <!-- Delete account -->
-                    <h2 class="h5 text-primary pt-1 pt-lg-3 mt-4">Delete account</h2>
-                    <p>When you delete your account, your public profile will be deactivated immediately. If you change
-                        your mind before the 14 days are up, sign in with your email and password, and we’ll send you a
-                        link to reactivate your account.</p>
-                    <div class="form-check mb-4">
-                        <input type="checkbox" id="delete-account" class="form-check-input">
-                        <label for="delete-account" class="form-check-label fs-base">Yes, I want to delete my
-                            account</label>
-                    </div>
-                    <button type="button" class="btn btn-danger">Delete</button>
                 </div>
             </div>
         </div>

@@ -4,6 +4,8 @@ from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
     image = models.ImageField(default='default.webp', upload_to='avatars')
+    phone = models.CharField(max_length=50)
+    bio = models.CharField(max_length=500)
 
 
 class Subscriber(models.Model):
