@@ -43,7 +43,7 @@
                 <div class="ps-3">
                     <h6 class="mb-1">Author</h6>
                     <a
-                       class="fw-semibold stretched-link">{{ post.author.first_name }} {{ post.author.last_name }}</a>
+                            class="fw-semibold stretched-link">{{ post.author.first_name }} {{ post.author.last_name }}</a>
                 </div>
             </div>
         </div>
@@ -64,16 +64,20 @@
                 <div class="sticky-top ms-xl-5 ms-lg-4 ps-xxl-4" style="top: 105px !important;">
                     <h6>Share this post:</h6>
                     <div class="mb-4 pb-lg-3">
-                        <a href="https://www.linkedin.com/in/abdusamad-malikov/" class="btn btn-icon btn-secondary btn-linkedin me-2 mb-2" target="_blank">
+                        <a href="https://www.linkedin.com/in/abdusamad-malikov/"
+                           class="btn btn-icon btn-secondary btn-linkedin me-2 mb-2" target="_blank">
                             <i class="bx bxl-linkedin"></i>
                         </a>
-                        <a href="https://www.facebook.com/abdusamad.malikov.18/" class="btn btn-icon btn-secondary btn-facebook me-2 mb-2" target="_blank">
+                        <a href="https://www.facebook.com/abdusamad.malikov.18/"
+                           class="btn btn-icon btn-secondary btn-facebook me-2 mb-2" target="_blank">
                             <i class="bx bxl-facebook"></i>
                         </a>
-                        <a href="https://github.com/sevbo2003" class="btn btn-icon btn-secondary btn-twitter me-2 mb-2" target="_blank">
+                        <a href="https://github.com/sevbo2003" class="btn btn-icon btn-secondary btn-twitter me-2 mb-2"
+                           target="_blank">
                             <i class="bx bxl-github"></i>
                         </a>
-                        <a href="https://www.instagram.com/abdusamad_malikov/" target="_blank" class="btn btn-icon btn-secondary btn-instagram me-2 mb-2">
+                        <a href="https://www.instagram.com/abdusamad_malikov/" target="_blank"
+                           class="btn btn-icon btn-secondary btn-instagram me-2 mb-2">
                             <i class="bx bxl-instagram"></i>
                         </a>
                     </div>
@@ -264,10 +268,18 @@
                                     <a class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
                                        data-bs-toggle="tooltip" data-bs-placement="left"
                                        title="Read later">
-                                        <button mt-0 type="submit" class="btn btn-link" value="{{ post.id }}"
-                                                name="post_id">
-                                            <i class="bx bx-bookmark" style="color: black"></i>
-                                        </button>
+                                        {% if user in post.savers.all %}
+                                            <button mt-0 type="submit" class="btn btn-link" value="{{ post.id }}"
+                                                    name="post_id">
+                                                <i class="bx bxs-bookmark"
+                                                   style="color: black; font-size: 25px"></i>
+                                            </button>
+                                        {% else %}
+                                            <button mt-0 type="submit" class="btn btn-link" value="{{ post.id }}"
+                                                    name="post_id">
+                                                <i class="bx bx-bookmark" style="color: black; font-size: 25px"></i>
+                                            </button>
+                                        {% endif %}
                                     </a>
                                 </form>
                                 <img src="{{ rpost.thumbnail.url }}" class="card-img-top" alt="Image">

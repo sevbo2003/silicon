@@ -32,10 +32,18 @@
                                         <a class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
                                            data-bs-toggle="tooltip" data-bs-placement="left"
                                            title="Read later">
-                                            <button mt-0 type="submit" class="btn btn-link" value="{{ post.id }}"
-                                                    name="post_id">
-                                                <i class="bx bx-bookmark" style="color: black"></i>
-                                            </button>
+                                            {% if user in post.savers.all %}
+                                                <button mt-0 type="submit" class="btn btn-link" value="{{ post.id }}"
+                                                        name="post_id">
+                                                    <i class="bx bxs-bookmark"
+                                                       style="color: black; font-size: 25px"></i>
+                                                </button>
+                                            {% else %}
+                                                <button mt-0 type="submit" class="btn btn-link" value="{{ post.id }}"
+                                                        name="post_id">
+                                                    <i class="bx bx-bookmark" style="color: black; font-size: 25px"></i>
+                                                </button>
+                                            {% endif %}
                                         </a>
                                     </form>
                                 </div>
@@ -67,10 +75,18 @@
                                         <a class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
                                            data-bs-toggle="tooltip" data-bs-placement="left"
                                            title="Read later">
-                                            <button mt-0 type="submit" class="btn btn-link" value="{{ post.id }}"
-                                                    name="post_id">
-                                                <i class="bx bx-bookmark" style="color: black"></i>
-                                            </button>
+                                            {% if user in post.savers.all %}
+                                                <button mt-0 type="submit" class="btn btn-link" value="{{ post.id }}"
+                                                        name="post_id">
+                                                    <i class="bx bxs-bookmark"
+                                                       style="color: black; font-size: 25px"></i>
+                                                </button>
+                                            {% else %}
+                                                <button mt-0 type="submit" class="btn btn-link" value="{{ post.id }}"
+                                                        name="post_id">
+                                                    <i class="bx bx-bookmark" style="color: black; font-size: 25px"></i>
+                                                </button>
+                                            {% endif %}
                                         </a>
                                     </form>
                                 </div>
@@ -169,7 +185,8 @@
                                 </li>
                                 {% for cat in categories %}
                                     <li class="nav-item mb-1">
-                                        <a href="{% url 'category_posts' cat.category %}" class="nav-link py-1 px-0">{{ cat|capfirst }} <span
+                                        <a href="{% url 'category_posts' cat.category %}"
+                                           class="nav-link py-1 px-0">{{ cat|capfirst }} <span
                                                 class="fw-normal opacity-60 ms-1">({{ cat.post_set.all.count }})</span></a>
                                     </li>
                                 {% endfor %}

@@ -30,10 +30,18 @@
                                         <a class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
                                            data-bs-toggle="tooltip" data-bs-placement="left"
                                            title="Read later">
-                                            <button mt-0 type="submit" class="btn btn-link" value="{{ post.id }}"
-                                                    name="post_id">
-                                                <i class="bx bx-bookmark" style="color: black"></i>
-                                            </button>
+                                            {% if user in post.savers.all %}
+                                                <button mt-0 type="submit" class="btn btn-link" value="{{ post.id }}"
+                                                        name="post_id">
+                                                    <i class="bx bxs-bookmark"
+                                                       style="color: black; font-size: 25px"></i>
+                                                </button>
+                                            {% else %}
+                                                <button mt-0 type="submit" class="btn btn-link" value="{{ post.id }}"
+                                                        name="post_id">
+                                                    <i class="bx bx-bookmark" style="color: black; font-size: 25px"></i>
+                                                </button>
+                                            {% endif %}
                                         </a>
                                     </form>
                                 </div>
@@ -65,10 +73,18 @@
                                         <a class="btn btn-icon btn-light bg-white border-white btn-sm rounded-circle position-absolute top-0 end-0 zindex-5 me-3 mt-3"
                                            data-bs-toggle="tooltip" data-bs-placement="left"
                                            title="Read later">
-                                            <button mt-0 type="submit" class="btn btn-link" value="{{ post.id }}"
-                                                    name="post_id">
-                                                <i class="bx bx-bookmark" style="color: black"></i>
-                                            </button>
+                                            {% if user in post.savers.all %}
+                                                <button mt-0 type="submit" class="btn btn-link" value="{{ post.id }}"
+                                                        name="post_id">
+                                                    <i class="bx bxs-bookmark"
+                                                       style="color: black; font-size: 25px"></i>
+                                                </button>
+                                            {% else %}
+                                                <button mt-0 type="submit" class="btn btn-link" value="{{ post.id }}"
+                                                        name="post_id">
+                                                    <i class="bx bx-bookmark" style="color: black; font-size: 25px"></i>
+                                                </button>
+                                            {% endif %}
                                         </a>
                                     </form>
                                 </div>
