@@ -26,8 +26,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    # public
     'ckeditor',
+    'rest_framework',
 
     # local
     'blog.apps.BlogConfig',
@@ -117,12 +118,10 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
-
 
 # EMAIL SETTING
 EMAIL_HOST = 'smtp.gmail.com'

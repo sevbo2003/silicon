@@ -13,6 +13,18 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.decorators import login_required
+from rest_framework import viewsets
+from rest_framework import permissions
+from .serializers import PostSerializer, UserSerializer
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer
 
 
 @login_required
