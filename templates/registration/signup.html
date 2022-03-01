@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load socialaccount %}
 {% block content %}
     {% block header %}
     {% endblock %}
@@ -16,13 +17,15 @@
                         <div class="col-sm-6">
                             <div class="position-relative mb-4">
                                 <label for="id_username" class="form-label fs-base">Username</label>
-                                <input type="text" id="id_username" name="username" class="form-control form-control-lg" placeholder="e.g. malikov03" required>
+                                <input type="text" id="id_username" name="username" class="form-control form-control-lg"
+                                       placeholder="e.g. malikov03" required>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="position-relative mb-4">
                                 <label for="id_email" class="form-label fs-base">Email</label>
-                                <input type="email" id="id_email" name="email" class="form-control form-control-lg" placeholder="malikov@gmail.com" required>
+                                <input type="email" id="id_email" name="email" class="form-control form-control-lg"
+                                       placeholder="malikov@gmail.com" required>
                                 <div class="invalid-feedback position-absolute start-0 top-100">Please enter a valid
                                     email address!
                                 </div>
@@ -31,7 +34,8 @@
                         <div class="col-12 mb-4">
                             <label for="id_password1" class="form-label fs-base">Password</label>
                             <div class="password-toggle">
-                                <input type="password" id="id_password1" name="password1" class="form-control form-control-lg" placeholder="Enter a password" required>
+                                <input type="password" id="id_password1" name="password1"
+                                       class="form-control form-control-lg" placeholder="Enter a password" required>
                                 <label class="password-toggle-btn" aria-label="Show/hide password">
                                     <input class="password-toggle-check" type="checkbox">
                                     <span class="password-toggle-indicator"></span>
@@ -44,7 +48,8 @@
                         <div class="col-12 mb-4">
                             <label for="id_password2" class="form-label fs-base">Confirm password</label>
                             <div class="password-toggle">
-                                <input type="password" id="id_password2" name="password2" class="form-control form-control-lg" placeholder="Confirm you password"
+                                <input type="password" id="id_password2" name="password2"
+                                       class="form-control form-control-lg" placeholder="Confirm you password"
                                        required>
                                 <label class="password-toggle-btn" aria-label="Show/hide password">
                                     <input class="password-toggle-check" type="checkbox">
@@ -74,12 +79,15 @@
                             Google
                         </a>
                     </div>
-                    <div class="col mb-3">
-                        <a href="#" class="btn btn-icon btn-secondary btn-facebook btn-lg w-100">
-                            <i class="bx bxl-facebook fs-xl me-2"></i>
-                            Facebook
-                        </a>
-                    </div>
+                    <form action="{% provider_login_url 'github' %}" method="post">{% csrf_token %}
+                        <div class="col mb-3">
+                            <button type="submit" href="{% provider_login_url 'github' %}"
+                                    class="btn btn-icon btn-secondary btn-facebook btn-lg w-100">
+                                <i class="bx bxl-github fs-xl me-2"></i>
+                                Github
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
