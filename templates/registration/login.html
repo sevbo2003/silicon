@@ -48,16 +48,19 @@
                 <hr class="my-4">
                 <h6 class="text-center mb-4">Or sign in with your social network</h6>
                 <div class="row row-cols-1 row-cols-sm-2">
-                    <div class="col mb-3">
-                        <a href="#" class="btn btn-icon btn-secondary btn-google btn-lg w-100">
-                            <i class="bx bxl-google fs-xl me-2"></i>
-                            Google
-                        </a>
-                    </div>
+                    <form action="{% provider_login_url 'google' %}" method="post">{% csrf_token %}
+                        <div class="col mb-3">
+                            <button type="submit" href="{% provider_login_url 'google' %}"
+                                    class="btn btn-icon btn-secondary btn-facebook btn-lg w-100">
+                                <i class="bx bxl-google fs-xl me-2"></i>
+                                Google
+                            </button>
+                        </div>
+                    </form>
                     <form action="{% provider_login_url 'github' %}" method="post">{% csrf_token %}
                         <div class="col mb-3">
                             <button type="submit" href="{% provider_login_url 'github' %}"
-                               class="btn btn-icon btn-secondary btn-facebook btn-lg w-100">
+                                    class="btn btn-icon btn-secondary btn-facebook btn-lg w-100">
                                 <i class="bx bxl-github fs-xl me-2"></i>
                                 Github
                             </button>
