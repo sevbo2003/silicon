@@ -65,11 +65,6 @@
                                     <input type="text" id="fn" class="form-control form-control-lg"
                                            value="{{ user.first_name }}" disabled>
                                 </div>
-                                <div class="col-sm-6 mb-4">
-                                    <label for="sn" class="form-label fs-base">Last name</label>
-                                    <input type="text" id="sn" class="form-control form-control-lg"
-                                           value="{{ user.last_name }}" disabled>
-                                </div>
                             {% else %}
                                 <div class="col-sm-6 mb-4">
                                     <label for="id_first_name" class="form-label fs-base">First name</label>
@@ -77,6 +72,14 @@
                                            class="form-control form-control-lg" placeholder="e.g Abdusamad">
                                     <div class="invalid-feedback">Please enter your first name!</div>
                                 </div>
+                            {% endif %}
+                            {% if user.last_name != '' %}
+                                <div class="col-sm-6 mb-4">
+                                    <label for="sn" class="form-label fs-base">Last name</label>
+                                    <input type="text" id="sn" class="form-control form-control-lg"
+                                           value="{{ user.last_name }}" disabled>
+                                </div>
+                            {% else %}
                                 <div class="col-sm-6 mb-4">
                                     <label for="id_last_name" class="form-label fs-base">Last name</label>
                                     <input type="text" id="id_last_name" name="last_name"

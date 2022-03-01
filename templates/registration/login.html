@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load socialaccount %}
 {% block content %}
     {% block header %}
     {% endblock %}
@@ -53,12 +54,15 @@
                             Google
                         </a>
                     </div>
-                    <div class="col mb-3">
-                        <a href="#" class="btn btn-icon btn-secondary btn-facebook btn-lg w-100">
-                            <i class="bx bxl-facebook fs-xl me-2"></i>
-                            Facebook
-                        </a>
-                    </div>
+                    <form action="{% provider_login_url 'github' %}" method="post">{% csrf_token %}
+                        <div class="col mb-3">
+                            <button type="submit" href="{% provider_login_url 'github' %}"
+                               class="btn btn-icon btn-secondary btn-facebook btn-lg w-100">
+                                <i class="bx bxl-github fs-xl me-2"></i>
+                                Github
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

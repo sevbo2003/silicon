@@ -1,0 +1,44 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+{% load static %}
+{% block title %} Login with Github {% endblock %}
+{% block content %}
+    {% block header %}{% endblock %}
+
+
+    <section class="position-relative h-100 pt-5 pb-4">
+        <div class="container d-flex flex-wrap justify-content-center mt-lg-5">
+            <div class="w-100 align-self-end pt-1 pt-md-4 pb-4" style="max-width: 526px;">
+                {% if process == "connect" %}
+                    <h1 class="text-center text-xl-start">{% blocktrans with provider.name as provider %}Connect
+                        {{ provider }}{% endblocktrans %}</h1>
+
+                    <p class="text-center text-xl-start pb-3 mb-3">{% blocktrans with provider.name as provider %}You
+                        are about to connect a new third party account
+                        from
+                        {{ provider }}.{% endblocktrans %}</p>
+                {% else %}
+                    <h1 class="text-center text-xl-start">{% blocktrans with provider.name as provider %}Sign In Via
+                        {{ provider }}{% endblocktrans %}</h1>
+
+                    <p class="text-center text-xl-start pb-3 mb-3">{% blocktrans with provider.name as provider %}You
+                        are about to sign in using a third party account from {{ provider }}.{% endblocktrans %}</p>
+                {% endif %}
+
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="col mb-3">
+                        <button type="submit" class="btn btn-primary shadow-primary btn-lg w-100">
+                            <i class="bx bxl-github fs-xl me-2"></i>
+                            {% trans "Continue" %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+
+    {% block footer %}{% endblock %}
+{% endblock %}

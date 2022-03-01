@@ -17,11 +17,13 @@ def account_details(request):
         user_update = CustomUserUpdateForm(request.POST)
         if user_update.is_valid():
             user = CustomUser.objects.get(username=request.user.username)
-            if request.user.first_name and request.user.last_name != '':
+            if request.user.first_name:
                 name = request.user.first_name
-                surname = request.user.last_name
             else:
                 name = user_update.cleaned_data['first_name']
+            if request.user.last_name != '':
+                surname = request.user.last_name
+            else:
                 surname = user_update.cleaned_data['last_name']
             if request.user.phone != '':
                 phone = request.user.phone
