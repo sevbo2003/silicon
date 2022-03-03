@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # public
+    # 3rd party
     'ckeditor',
     'rest_framework',
     'allauth',
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     # local
     'blog.apps.BlogConfig',
     'accounts.apps.AccountsConfig',
+    'api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [
