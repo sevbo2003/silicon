@@ -84,7 +84,11 @@
                     <form action="{% url 'like_post' post.pk %}" method="post">{% csrf_token %}
                         <button class="btn btn-lg btn-outline-secondary" type="submit" value="{{ post.id }}"
                                 name="post_id">
-                            <i class="bx bx-like me-2 lead"></i>
+                            {% if user in post.likes.all %}
+                                <i class="bx bxs-like me-2 lead"></i>
+                            {% else %}
+                                <i class="bx bx-like me-2 lead"></i>
+                            {% endif %}
                             Like it
                             <span class="badge bg-primary shadow-primary mt-n1 ms-3">{{ post.likes.all.count }}</span>
                         </button>

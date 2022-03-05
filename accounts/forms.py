@@ -8,8 +8,8 @@ from django.core.exceptions import ValidationError
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = get_user_model()
-        fields = ('username', 'email')
-
+        fields = ('username', 'email', 'password1')
+    
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
