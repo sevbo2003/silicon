@@ -1,1 +1,1 @@
-web: gunicorn silicon.wsgi
+web: gunicorn config.wsgi
